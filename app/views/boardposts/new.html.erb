@@ -1,0 +1,6 @@
+<h2>create post</h2>
+<%= form_for [@category, @post] do |f|%>
+  <%= f.text_area :title %>
+  <%= f.text_area :content %>
+  <%= submit_tag "Submit" %>
+<%  end %>

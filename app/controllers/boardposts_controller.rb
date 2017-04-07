@@ -6,9 +6,11 @@ class BoardpostsController < ApplicationController
   end
 
   def show
+    @author = User.find(@post.user_id)
   end
 
   def new
+    @post = Boardpost.new
   end
 
   def create

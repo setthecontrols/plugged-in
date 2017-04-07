@@ -8,4 +8,6 @@
   <%= paginate @posts %>
 <% end %>
 
-<%= button_to "Create Post", new_boardcategory_boardpost_path(@category)%>
+<!-- add auth -->
+  <%= link_to "Create Post", new_boardcategory_boardpost_path(@category)%>
+
