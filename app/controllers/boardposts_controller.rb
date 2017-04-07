@@ -1,7 +1,8 @@
 class BoardpostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :delete, :update]
+  before_action :find_cat
   def index
-    @posts = Index.where(category_id: params[:id]).order_by(created_at, DESC)
+    @posts = @category.boardposts
   end
 
   def show
@@ -13,6 +14,7 @@ class BoardpostsController < ApplicationController
   def create
     @post = Boardpost.new(post_params)
     @post.user_id = current_user.id
+    @post.boardcategory_id = @category.id
   end
 
   def edit
@@ -34,6 +36,10 @@ class BoardpostsController < ApplicationController
     end
 
     def find_post
-      @post = Boardpost.find(params[:post_id])
+      @post = Boardpost.find(params[:boardpost_id])
+    end
+
+    def find_cat
+      @category = Boardcategory.find(params[:boardcategory_id])
     end
 end
