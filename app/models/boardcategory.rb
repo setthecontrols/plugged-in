@@ -1,4 +1,4 @@
-class Boardcategories < ApplicationRecord
+class Boardcategory < ApplicationRecord
   has_many :boardposts
 
   validates :name, presence: true
