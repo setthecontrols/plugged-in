@@ -6,9 +6,16 @@ class BoardpostsController < ApplicationController
   end
 
   def show
+    @author = User.find(@post.user_id)
   end
 
   def new
+    @post = Boardpost.new
+    if authenticate_user!
+      render :new
+    else
+      redirect_to '/'
+    end
   end
 
   def create
@@ -18,6 +25,7 @@ class BoardpostsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
