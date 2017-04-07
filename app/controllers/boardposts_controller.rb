@@ -1,4 +1,5 @@
 class BoardpostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_post, only: [:show, :edit, :delete, :update]
   before_action :find_cat
   def index
@@ -11,10 +12,11 @@ class BoardpostsController < ApplicationController
 
   def new
     @post = Boardpost.new
-    if authenticate_user!
+    if user_signed_in?
       render :new
     else
       redirect_to '/'
+      # maybe throw up error?
     end
   end
 
@@ -22,10 +24,17 @@ class BoardpostsController < ApplicationController
     @post = Boardpost.new(post_params)
     @post.user_id = current_user.id
     @post.boardcategory_id = @category.id
+    if @post.save
+      render :show
+    else
+      @errors = @post.errors.full_messages
+      render :new
+    end
   end
 
   def edit
-
+    redirect_to '/' if current_user.id != @post.user_id
+    # throw error?
   end
 
   def update
@@ -33,7 +42,9 @@ class BoardpostsController < ApplicationController
   end
 
   def delete
-    @post.destroy
+    if current_user.id == @post.user_id
+      @post.destroy
+    end
     redirect_to '/'
     # make it go to a success page?
   end
