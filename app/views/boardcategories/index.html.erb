@@ -1,0 +1,5 @@
+<h2>cats</h2>
+<% @categories.each do |category|%>
+  <%= link_to "#{category.name}", boardcategory_boardposts_path(category) %> <br>
+<% end  %>
+<%= paginate @categories %>
