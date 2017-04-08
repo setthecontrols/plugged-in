@@ -4,8 +4,8 @@ class CreateBoardposts < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :content
 
-      t.integer :user_id
-      t.integer :boardcategory_id
+      t.references :user
+      t.references :boardcategory
 
       t.timestamps
     end

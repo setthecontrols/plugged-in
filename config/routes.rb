@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'searches/advanced_form', to: 'searches#advanced_form'
 
   resources :sessions
-  # resources :users
+  resources :users
   root to: "pages#home"
 
 

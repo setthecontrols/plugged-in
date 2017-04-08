@@ -1,7 +1,7 @@
 <h2>posts</h2>
 
 <% @posts.each do |post| %>
-  <%= link_to "#{post.title}", boardcategory_boardpost(@category, post) %>
+  <%= link_to "#{post.title}", boardcategory_boardpost_path(@category, post) %> <br>
 <% end %>
 
 <% if @posts.any? %>
@@ -10,4 +10,3 @@
 
 <!-- add auth -->
   <%= link_to "Create Post", new_boardcategory_boardpost_path(@category)%>
-
