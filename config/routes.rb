@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   resources :searches, only: [:index]
   resources :sessions
-  # resources :users
+  resources :users
   root to: "pages#home"
 
 
