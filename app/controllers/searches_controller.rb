@@ -3,8 +3,8 @@ class SearchesController < ApplicationController
     @none = false
     @keyword = params[:keyword]
     @search = Search.new
-    @results = @seach.find(@keyword)
-    if @results[:posts].none && @results[:categories].none
+    @results = @search.find(@keyword)
+    if @results[:posts].none? && @results[:categories].none?
       @none = true
     end
   end

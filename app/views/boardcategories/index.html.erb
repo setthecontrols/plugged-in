@@ -1,3 +1,8 @@
+<form action="/searches" method="get">
+  <input name="keyword" type="text">
+  <input type="submit" value="Search">
+</form>
+
 <h2>cats</h2>
 <% @categories.each do |category|%>
   <%= link_to "#{category.name}", boardcategory_boardposts_path(category) %> <br>
