@@ -3,5 +3,10 @@ Rails.application.routes.draw do
   resources :boardcategories, only: [:index] do
     resources :boardposts
   end
+  resources :searches, only: [:index]
+  resources :sessions
   root to: "home#index"
+
+  get 'auth/facebook/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
 end

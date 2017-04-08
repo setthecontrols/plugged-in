@@ -12,12 +12,6 @@ class BoardpostsController < ApplicationController
 
   def new
     @post = Boardpost.new
-    if user_signed_in?
-      render :new
-    else
-      redirect_to '/'
-      # maybe throw up error?
-    end
   end
 
   def create
