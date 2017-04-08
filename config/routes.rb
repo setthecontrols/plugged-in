@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   end
   resources :searches, only: [:index]
   resources :sessions
-  root to: "home#index"
+  # resources :users
+  root to: "pages#home"
+
 
   get 'auth/facebook/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
