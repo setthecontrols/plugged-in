@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
 
   def show
+    @user = User.find(current_user.id)
+    p current_user
+    p "*"*45
+    p @user
   end
 
-  
+
 
   private
   def user_params
