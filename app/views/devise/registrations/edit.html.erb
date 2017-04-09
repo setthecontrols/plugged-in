@@ -1,1 +1,27 @@
-<h1>hi we made a thing<h1>
+<h2>form to edit a password<h2>
+  <h5>
+    <% if @minimum_password_length %>
+      <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+  </h5>
+
+<%= form_for(@user, as: @user, url: "/users/#{@user.id}", html: { method: :put }) do |f| %>
+
+  <div class="field">
+    <%= f.label :update_password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirm_updated_password %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

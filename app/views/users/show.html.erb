@@ -4,11 +4,11 @@
 <%= @user.slogan %><br>
 <%= @user.location %><br>
 <%= @user.band_status %><br>
-<%= @user.instruments %><br>
 <%= @user.genre %><br>
 <%= @user.bio %><br>
 <%= @user.experience %><br>
 <%= @user.instruments %><br>
 
 
-<%= link_to("edit profile", edit_user_path(@user) ) %>
+<%= link_to("edit profile", edit_user_path(@user) ) %><br>
+<%= link_to "Change your password", edit_user_registration_path %>
