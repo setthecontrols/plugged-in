@@ -3,6 +3,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
+    render 'users/show'
     super
   end
 
@@ -13,8 +14,8 @@ class Users::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
+    redirect '/'
     super
-    redirect_to '/'
   end
 
   # protected
