@@ -41,6 +41,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'figaro'
 gem "paperclip", "~> 5.0.0"
+gem 'geocoder'
 
 group :development, :test do
   gem 'better_errors'
