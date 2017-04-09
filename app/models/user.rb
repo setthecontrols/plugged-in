@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_many :conversations
   has_many :dragonflymedia
 
+  def full_name
+    first_name + " " + last_name
+  end
+
   def self.create_with_omniauth(auth)
 
     user = find_or_create_by(uid: auth['uid'], provider:  auth['provider'])
