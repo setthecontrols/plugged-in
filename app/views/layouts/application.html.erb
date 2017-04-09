@@ -3,29 +3,33 @@
   <head>
     <title>PluggedIn</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><%= alert %></div>
   </head>
-
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="nav-wrapper">
-
-        <%= link_to "Home", root_path %> |
-
-          <% if user_signed_in? == false %>
-            <%= link_to "Register", new_user_registration_path %> |
-            <%= link_to "Login", new_user_session_path %>
-          <% else %>
-            <%= link_to "Profile", user_path(current_user) %> |
-            <%= link_to "Logout", destroy_user_session_path %>
-          <% end %>
-
-        </div>
-      </nav>
+    <nav>
+    <% if user_signed_in? %>
+      <div class="nav-wrapper indigo">
+        <a href="/" class="brand-logo">Plugged-in</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/users/<%=current_user.id%>" class="waves-effect waves-light btn data-activates="dropdown1"><%=current_user.first_name.upcase%></a></li>
+          <li><%= link_to "Logout", destroy_user_session_path %></li>
+        </ul>
+      </div>
+    </nav>
+    <% else %>
+    <nav>
+      <div class="nav-wrapper indigo">
+        <a href="/" class="brand-logo">Plugged-in</a>
+        <ul class="right hide-on-med-and-down">
+          <li><%= link_to "Login", new_user_session_path %></li>
+          <li><%= link_to "Register", new_user_registration_path %> </li>
+        </ul>
+      </div>
+    </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>
