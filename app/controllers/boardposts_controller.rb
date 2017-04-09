@@ -1,7 +1,8 @@
 class BoardpostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_post, only: [:show, :edit, :delete, :update]
-  before_action :find_cat
+  before_action :find_cat, only: [:index]
+  before_action :find_cat_through_post, except: [:index]
   def index
     @posts = @category.boardposts.page params[:page]
   end
@@ -49,10 +50,14 @@ class BoardpostsController < ApplicationController
     end
 
     def find_post
-      @post = Boardpost.find(params[:boardpost_id])
+      @post = Boardpost.find(params[:id])
     end
 
     def find_cat
       @category = Boardcategory.find(params[:boardcategory_id])
+    end
+
+    def find_cat_through_post
+      @category = Boardcategory.find(@post.boardcategory_id)
     end
 end
