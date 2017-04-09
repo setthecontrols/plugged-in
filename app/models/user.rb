@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :conversations
   has_many :dragonflymedia
 
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
   def full_name
     first_name + " " + last_name
   end

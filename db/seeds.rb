@@ -40,5 +40,4 @@ end
 
 200.times do
   Boardpost.create!(title: "Title", content: "Content", boardcategory_id: rand(1..30), user_id: rand(1..30))
-
 end
