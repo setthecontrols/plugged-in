@@ -1,8 +1,8 @@
 class BoardpostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_post, only: [:show, :edit, :delete, :update]
-  before_action :find_cat, only: [:index]
-  before_action :find_cat_through_post, except: [:index]
+  before_action :find_cat, only: [:new, :create, :index]
+  before_action :find_cat_through_post, except: [:new, :create, :index]
   def index
     @posts = @category.boardposts.page params[:page]
   end
