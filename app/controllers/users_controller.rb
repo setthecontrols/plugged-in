@@ -7,7 +7,10 @@ class UsersController < ApplicationController
     p @user
   end
 
-
+  def edit
+    @user = current_user
+    # super
+  end
 
   private
   def user_params
