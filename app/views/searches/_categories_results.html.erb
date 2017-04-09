@@ -1,0 +1,4 @@
+<h3>Categories: </h3>
+<% @results[:categories].each do |cat| %>
+  <%= link_to "#{cat.name}", boardcategory_boardposts_path(cat) %> <br>
+<% end %>

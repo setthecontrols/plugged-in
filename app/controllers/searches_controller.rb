@@ -1,11 +1,17 @@
 class SearchesController < ApplicationController
   def index
-    @none = false
-    @keyword = params[:keyword]
-    @search = Search.new
-    @results = @search.find(@keyword)
-    if @results[:posts].none? && @results[:categories].none?
-      @none = true
-    end
+    @keyword = params[:keyword].downcase
+    @results = search_all(@keyword)
+    @found = any_results_all?(@results)
+  end
+
+  def advanced_form
+  end
+
+  def advanced
+    @keyword = params[:keyword].downcase
+    @model = params[:model].downcase
+    @results = search_specific(@keyword, @model)
+    @found = any_results_specific?(@results)
   end
 end
