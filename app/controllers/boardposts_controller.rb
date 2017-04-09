@@ -49,7 +49,7 @@ class BoardpostsController < ApplicationController
     end
 
     def find_post
-      @post = Boardpost.find(params[:boardpost_id])
+      @post = Boardpost.find(params[:id])
     end
 
     def find_cat
