@@ -1,8 +1,8 @@
 class BoardpostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_post, only: [:show, :edit, :delete, :update]
-  before_action :find_cat, only: [:index]
-  before_action :find_cat_through_post, except: [:index]
+  before_action :find_cat, only: [:new, :create, :index]
+  before_action :find_cat_through_post, except: [:new, :create, :index]
   def index
     @posts = @category.boardposts.page params[:page]
   end
@@ -20,7 +20,7 @@ class BoardpostsController < ApplicationController
     @post.user_id = current_user.id
     @post.boardcategory_id = @category.id
     if @post.save
-      render :show
+      redirect_to boardcategory_boardpost_path(@category, @post)
     else
       @errors = @post.errors.full_messages
       render :new
