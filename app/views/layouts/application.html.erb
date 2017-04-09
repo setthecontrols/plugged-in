@@ -14,8 +14,8 @@
       <div class="nav-wrapper indigo">
         <a href="/" class="brand-logo">Plugged-in</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/users/<%=current_user.id%>" class="waves-effect waves-light btn data-activates="dropdown1"><%=current_user.first_name.upcase%></a></li>
-          <li><%= link_to "Logout", destroy_user_session_path %></li>
+          <li><a href="/users/<%=current_user.id%>" class="waves-effect waves-light btn data-activates="dropdown1">user first name here</a></li>
+          <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
         </ul>
       </div>
     </nav>
