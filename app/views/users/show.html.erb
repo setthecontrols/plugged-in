@@ -1,5 +1,7 @@
 <h3> Hey there, <%= @user.first_name %></h3>
 
+<%= image_tag @user.avatar.url(:medium) %>
+
 <%= @user.username %><br>
 <%= @user.slogan %><br>
 <%= @user.location %><br>
