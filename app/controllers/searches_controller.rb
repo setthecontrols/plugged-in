@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
   def index
-    @keyword = params[:keyword]
+    @keyword = params[:keyword].downcase
     @results = search_all(@keyword)
     @found = any_results_all?(@results)
   end
@@ -9,8 +9,8 @@ class SearchesController < ApplicationController
   end
 
   def advanced
-    @keyword = params[:keyword]
-    @model = params[:model]
+    @keyword = params[:keyword].downcase
+    @model = params[:model].downcase
     @results = search_specific(@keyword, @model)
     @found = any_results_specific?(@results)
   end

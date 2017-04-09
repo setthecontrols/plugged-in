@@ -1,10 +1,7 @@
 <h2>Searched for "<%= @keyword %>" in "<%= @model %>"</h2>
 
 <% if @found %>
-  <h3><%= @model.capitalize %>: </h3>
-  <% @results.each do |entry| %>
-      <%= entry %> <br>
-  <% end %>
+  <%= advanced_results_partial(@model) %>
 <% else %>
   <p>No Results Found</p>
 <% end %>
