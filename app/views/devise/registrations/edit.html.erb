@@ -1,27 +1,18 @@
-<h2>form to edit a password<h2>
-  <h5>
-    <% if @minimum_password_length %>
-      <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-  </h5>
+<!-- what should happen here: we shoul dhave this form that hits the new
+def update_password in our users controller. this will allow us to edit the
+password for this user. I'll leave a link to relevant docs and let
+everyone else take a look. it's too late right now -->
 
-<%= form_for(@user, as: @user, url: "/users/#{@user.id}", html: { method: :put }) do |f| %>
-
+<%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
   <div class="field">
-    <%= f.label :update_password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.label :password, "Password" %><br />
+    <%= f.password_field :password, :autocomplete => "off"  %>
   </div>
-
   <div class="field">
-    <%= f.label :confirm_updated_password %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="action_container">
+    <%= f.submit %>
   </div>
 <% end %>
