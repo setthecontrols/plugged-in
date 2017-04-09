@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users
   resources :boardcategories, only: [:index] do
     resources :boardposts
   end
@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'searches/advanced', to: 'searches#advanced'
   get 'searches/advanced_form', to: 'searches#advanced_form'
 
-  resources :sessions
   resources :users
   root to: "pages#home"
 
