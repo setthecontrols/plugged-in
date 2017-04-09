@@ -3,7 +3,7 @@ class BoardpostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :delete, :update]
   before_action :find_cat
   def index
-    @posts = @category.boardposts
+    @posts = @category.boardposts.page params[:page]
   end
 
   def show
@@ -12,12 +12,6 @@ class BoardpostsController < ApplicationController
 
   def new
     @post = Boardpost.new
-    if user_signed_in?
-      render :new
-    else
-      redirect_to '/'
-      # maybe throw up error?
-    end
   end
 
   def create
