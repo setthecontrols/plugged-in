@@ -20,7 +20,7 @@ class BoardpostsController < ApplicationController
     @post.user_id = current_user.id
     @post.boardcategory_id = @category.id
     if @post.save
-      render :show
+      redirect_to boardcategory_boardpost_path(@category, @post)
     else
       @errors = @post.errors.full_messages
       render :new
