@@ -7,6 +7,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
+  <% flash.each do |name, msg| %>
+    <%= content_tag(:div, msg.html_safe, class: "alert alert-#{name}") %>
+  <% end %>
   <nav>
     <% if user_signed_in? %>
     <div class="nav-wrapper cyan darken-3">

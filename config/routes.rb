@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   resources :locations, except: [:update, :edit, :destroy]
+  resources :distances, only: [:new, :create]
 
   resources :searches, only: [:index]
   get 'searches/advanced', to: 'searches#advanced'
