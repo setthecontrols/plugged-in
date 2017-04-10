@@ -18,3 +18,5 @@
 
 <%= link_to("edit profile", edit_user_path(@user) ) %><br>
 <%= link_to("Change your password", edit_user_registration_path) %>
+
+<%= button_to "Create Conversation", user_user_conversations_path(@user), method: "post"  %>
