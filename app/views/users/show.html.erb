@@ -12,12 +12,11 @@
 <%= @user.instruments %><br>
 
 
-
-<audio controls>
-  <source src="/assests/audio/stc_down_the_road.mp3" type="audio/mp3">
-  <!-- <source src="/path/to/audio.ogg" type="audio/ogg"> -->
+<audio>
+ <source src='/STC_Down_The_Road.mp3' type="audio/mp3">
 </audio>
-<%= link_to("Add your location", new_location_path) %>
+
+<%= link_to("Add your location", new_location_path) %><br>
 <%= link_to("edit profile", edit_user_path(@user) ) %><br>
 <%= link_to("Change your password", edit_user_registration_path) %>
 
