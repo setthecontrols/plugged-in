@@ -1,7 +1,7 @@
 <h2>Edit <%= @user.username %></h2>
 
 
-<%= form_for(@user, as: @user, url: "/users/#{@user.id}", html: { multipart: true, method: :put }) do |f| %>
+<%= form_for(@user, as: @user, url: "/users/#{@user.id}", html: { multipart: true, method: :patch }) do |f| %>
 
   <div class="field">
     <%= f.label :avatar %><br />
