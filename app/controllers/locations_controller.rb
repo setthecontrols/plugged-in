@@ -9,10 +9,11 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @user = User.find(@location.user_id)
   end
 
   def create
-    @user = User.find("#{current_user.id}")
+    @user = User.find(current_user.id)
     @location = Location.new(location_params)
     @location.user_id = @user.id
     if @location.save
