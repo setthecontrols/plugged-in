@@ -14,4 +14,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize-sprockets
+//= require plyr
 //= require_tree .
+
+
+$(document).on("turbolinks:load", function() {
+  plyr.setup();
+});
