@@ -2,3 +2,4 @@
 
 <p>Address: <%= @location.address %></p>
 <p>Coordinates: <%= @location.latitude %> <%= @location.longitude %></p>
+<p>User: <%= link_to( @user.first_name, user_path(@user)) %> </p>
