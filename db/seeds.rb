@@ -25,6 +25,7 @@ post_categories = ["Band looking for players", "Bands needed", "For sale", "Play
     bio: Faker::ChuckNorris.fact,
     experience: "SOME BS",
     instruments: playables.sample,
+    avatar: Faker::Avatar.image("my-own-slug", "50x50", "bmp", "set1", "bg1")
   )
 end
 
