@@ -11,8 +11,11 @@
 <%= @user.experience %><br>
 <%= @user.instruments %><br>
 
-<p> Location: <%= link_to(@location.title, location_path(@location)) %> </p>
-
+<% if @location != nil %>
+  <p> Location: <%= link_to(@location.title, location_path(@location)) %> </p>
+<% else %>
+  <p> Location: Not yet set </p>
+<% end %>
 
 <audio>
  <source src='/STC_Down_The_Road.mp3' type="audio/mp3">

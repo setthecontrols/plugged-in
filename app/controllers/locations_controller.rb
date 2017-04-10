@@ -30,3 +30,9 @@ class LocationsController < ApplicationController
     params.require(:location).permit(:title, :address)
   end
 end
+
+
+# garbage code
+# to search for users within 20 miles of the current user
+# @nearby_users = User.near([current_user.latitude, current_user.longitude], 20)
+# <%= @user.distance_to([current_user.latitude, current_user.longitude]) %>
