@@ -17,6 +17,10 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     @location.user_id = @user.id
     if @location.save
+      @user.location = (location_params[:address])
+      @user.latitude = @location.latitude
+      @user.longitude = @location.longitude
+      @user.save
       flash[:success] = "Location added!"
       redirect_to root_path
     else

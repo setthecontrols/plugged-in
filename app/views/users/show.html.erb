@@ -12,7 +12,7 @@
 <%= @user.instruments %><br>
 
 <% if @location != nil %>
-  <p> Location: <%= link_to(@location.title, location_path(@location)) %> </p>
+  <p> Location: <%= link_to(@user.location, location_path(@location)) %> </p>
 <% else %>
   <p> Location: Not yet set </p>
 <% end %>
