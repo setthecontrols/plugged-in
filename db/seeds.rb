@@ -11,7 +11,7 @@ playables = ["Guitar", "Bass", "Drums", "Piano", "Sax", "Keys", "Obo"]
 post_categories = ["Band looking for players", "Bands needed", "For sale", "Players looking for bands", "Players looking for jams", "Music services", "Paid gigs" ]
 
 30.times do
-  User.create(
+  User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
@@ -25,7 +25,6 @@ post_categories = ["Band looking for players", "Bands needed", "For sale", "Play
     bio: Faker::ChuckNorris.fact,
     experience: "SOME BS",
     instruments: playables.sample,
-    avatar: Faker::Avatar.image("my-own-slug", "50x50", "bmp")
   )
 end
 
