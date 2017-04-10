@@ -25,7 +25,7 @@
         <li><a href="/users/<%=current_user.id%>">Bio<i class="large material-icons">perm_identity</i></a></li>
         <li><a href="#!">Messages<i class="large material-icons">message</i></a></li>
         <li><a href="#!">Connections<i class="large material-icons">settings_input_component</i></a></li>
-        <li><a href="#!">Postings<i class="large material-icons">forum</i></a></li>
+        <li><a href="/boardcategories">Postings<i class="large material-icons">forum</i></a></li>
         <li><a href="#!">Chat<i class="large material-icons">chat</i></a></li>
         <li><div class="divider"></div></li>
         <li><%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "waves-effect"  %></li>
