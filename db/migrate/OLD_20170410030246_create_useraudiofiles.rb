@@ -1,7 +1,7 @@
 class CreateUserAudioFiles < ActiveRecord::Migration[5.0]
   def change
-    create_table :user_audio_files do |t|
-      t.attachment :audio_file
+    create_table :useraudiofiles do |t|
+      t.attachment :media
       t.references :user
 
 
