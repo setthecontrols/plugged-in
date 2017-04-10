@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :boardposts
   has_many :conversations
   has_many :dragonflymedia
+  has_many :locations
 
   # validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
