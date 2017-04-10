@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20170410042923) do
 
   # These are extensions that must be enabled in order to support this database
@@ -49,8 +48,6 @@ ActiveRecord::Schema.define(version: 20170410042923) do
     t.float    "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
-=======
     t.integer  "user_id"
   end
 
@@ -63,7 +60,6 @@ ActiveRecord::Schema.define(version: 20170410042923) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["user_id"], name: "index_user_audio_files_on_user_id", using: :btree
->>>>>>> 2d979baac2c9cd64e5c6f53a59aa32bd67ccaf0b
   end
 
   create_table "user_conversations", force: :cascade do |t|
@@ -99,11 +95,6 @@ ActiveRecord::Schema.define(version: 20170410042923) do
     t.text     "bio"
     t.text     "experience"
     t.string   "instruments"
-<<<<<<< HEAD
-=======
-    t.float    "latitude"
-    t.float    "longitude"
->>>>>>> 2d979baac2c9cd64e5c6f53a59aa32bd67ccaf0b
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
