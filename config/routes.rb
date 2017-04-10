@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get 'searches/advanced_form', to: 'searches#advanced_form'
 
 
-  resources :users
+  resources :users do
+    resources :user_conversations, shallow: true
+  end
   root to: "pages#home"
 
 end

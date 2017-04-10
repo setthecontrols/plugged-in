@@ -1,5 +1,7 @@
 <h3> Hey there, <%= @user.first_name %></h3>
 
+<%= image_tag @user.avatar.url(:medium) %>
+
 <%= @user.username %><br>
 <%= @user.slogan %><br>
 <%= @user.location %><br>
@@ -9,6 +11,12 @@
 <%= @user.experience %><br>
 <%= @user.instruments %><br>
 
+<audio controls>
+  <source src="/path/to/audio.mp3" type="audio/mp3">
+  <source src="/path/to/audio.ogg" type="audio/ogg">
+</audio>
 
 <%= link_to("edit profile", edit_user_path(@user) ) %><br>
 <%= link_to("Change your password", edit_user_registration_path) %>
+
+<%= button_to "Create Conversation", user_user_conversations_path(@user), method: "post"  %>
