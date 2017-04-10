@@ -1,11 +1,46 @@
-<form action="/searches" method="get">
-  <input name="keyword" type="text">
-  <input type="submit" value="Search">
-</form>
-<%= link_to "Advance Search", searches_advanced_form_path %>
+<br>
+<div class="center-align">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l12">
+        <div class="card">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" name="keyword" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="center-align">
+  <input type="submit" value="Search" class="btn valign"><br>
+  <br>
 
-<h2>cats</h2>
-<% @categories.each do |category|%>
-  <%= link_to "#{category.name}", boardcategory_boardposts_path(category) %> <br>
-<% end  %>
-<%= paginate @categories %>
+<a class="waves-effect waves-light btn-small" href="#modal1">Advanced Search</a>
+<div id="modal1" class="modal">
+  <div class="modal-content">
+  <%=render "/searches/advanced_form"%>
+  </div>
+</div>
+</div>
+
+
+<div class="container">
+  <h2 class="cyan-text text-darken-3">Categories</h2>
+  <br>
+  <div class="collection">
+    <% @categories.each do |category|%>
+    <%= link_to "#{category.name}", boardcategory_boardposts_path(category), :class => "collection-item cyan-text text-darken-3 center-align grey lighten-3" %>
+    <% end  %>
+  </div>
+</div>
+<div class="container">
+  <div class="center-align">
+    <%= paginate @categories %>
+  </div>
+</div>
+<br>
