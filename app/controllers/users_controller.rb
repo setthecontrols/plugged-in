@@ -21,6 +21,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    p "*"*30
+    p update_user_params
     @user = User.find(params[:id])
     if @user.update_attributes(update_user_params)
       bypass_sign_in(@user)
@@ -35,10 +37,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :username, :password)
   end
   def update_user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :username, :bio, :location, :band_status, :experience, :instruments, :slogan)
+    params.require(:user).permit(:first_name, :last_name, :email, :username, :bio, :location, :band_status, :experience, :instruments, :slogan, :avatar, :audio_file_content_type)
   end
   def password_params
     # NOTE: Using `strong_parameters` gem
-    params.require(:user).permit(:password, :password_confirmation, :image)
+    params.require(:user).permit(:password, :password_confirmation)
   end
 end
