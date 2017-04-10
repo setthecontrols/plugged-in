@@ -7,20 +7,14 @@ class User < ApplicationRecord
                     styles: { large: "600x600>", medium: "300x300>", thumb: "150x150#" },
                     url: "/assets/:style/:attachment/:style.:extension"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
-  # has_attached_file :audio_file,
-  #                   :url => "/assets/:class/:id/:attachment/:style.:extension",
-  #                   :path => ":rails_root/public/assets/:class/:id/:attachment/:style.:extension"
-  # validates_attachment_content_type :audio_file, :content_type => [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio' ]
 
-
-
-
+  has_many :audiofiles
   has_many :boardposts
-  has_many :user_conversations
-  has_many :conversations, through: :user_conversations
+  has_many :conversations
   has_many :dragonflymedia
+  has_many :locations
 
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  # validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   def full_name
     first_name + " " + last_name

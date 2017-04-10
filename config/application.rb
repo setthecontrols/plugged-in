@@ -10,6 +10,9 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
+# require "#{Rails.root}/app/assets/audio"
+# config.assets.paths << "#{Rails.root}/app/assets/audio"
+# config.assets.enabled = true
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
