@@ -10,7 +10,8 @@ class User < ApplicationRecord
 
 
   has_many :boardposts
-  has_many :conversations
+  has_many :user_conversations
+  has_many :conversations, through: :user_conversations
   has_many :dragonflymedia
 
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
