@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :boardposts
   end
 
-
+  resources :locations, except: [:update, :edit, :destroy]
 
   resources :searches, only: [:index]
   get 'searches/advanced', to: 'searches#advanced'
