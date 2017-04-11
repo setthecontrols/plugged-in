@@ -8,7 +8,7 @@ class ConversationChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    Message.create!(content: data['message'], )
+    Message.create!(content: data['data']['message'], user_id: data['data']['user_id'].to_i, conversation_id: data['data']['conversation_id'].to_i)
     # ActionCable.server.broadcast 'some_channel', message: data['message']
   end
 end

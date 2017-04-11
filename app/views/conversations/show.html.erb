@@ -1,10 +1,20 @@
-<h2>yaass</h2>
-<div class="messages">
+<h2>Your Conversation with <%= @convo.other_user(current_user).username %></h2>
+<div id="<%= @convo.id %>" class="message-list">
+  <ul id="<%= current_user.id %>" class="messages">
   <% if @messages %>
     <% @messages.each do |message| %>
-      <%= message.content %>
+      <% if message.user_id == current_user.id %>
+      <!-- <div class="left-align"> -->
+        <li class="current-user-post"> <%= message.content %></li>
+      <!-- </div> -->
+      <% else %>
+        <!-- <div class="right-align"> -->
+          <li class="other-user-post"> <%= message.content %></li>
+        <!-- </div> -->
+      <% end %>
     <% end %>
   <% end %>
+  </ul>
 </div>
 <form>
   <label>Say Something: </label>
