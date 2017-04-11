@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @locations = Location.near([current_user.latitude, current_user.longitude], 10)
+  end
+
   def show
     @user = User.find(params[:id])
     @locations = Location.where(user_id: params[:id])

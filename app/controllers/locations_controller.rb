@@ -17,6 +17,10 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     @location.user_id = @user.id
     if @location.save
+      @user.location = (location_params[:address])
+      @user.latitude = @location.latitude
+      @user.longitude = @location.longitude
+      @user.save
       flash[:success] = "Location added!"
       redirect_to root_path
     else
@@ -30,3 +34,9 @@ class LocationsController < ApplicationController
     params.require(:location).permit(:title, :address)
   end
 end
+
+
+# garbage code
+# to search for users within 20 miles of the current user
+# @nearby_users = User.near([current_user.latitude, current_user.longitude], 20)
+# <%= @user.distance_to([current_user.latitude, current_user.longitude]) %>

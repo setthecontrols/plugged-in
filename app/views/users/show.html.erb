@@ -13,24 +13,19 @@
 <%= @user.experience %><br>
 <%= @user.instruments %><br>
 
-<% if @location %>
-  <p> Location: <%= link_to(@location.title, location_path(@location)) %> </p>
-  <%= link_to("Update your location", new_location_path) %><br>
-<%  end %>
-
-
-<!-- <audio>
- <!-- <source type="audio/mp3"> -->
-</audio> -->
+<% if @location != nil %>
+  <p> Location: <%= link_to(@user.location, location_path(@location)) %> </p>
+<% else %>
+  <p> Location: Not yet set </p>
+<% end %>
 
 <% @user.useraudiofiles.each do |file| %>
   <%= audio_tag file.media_file_name unless file.media_file_name.blank? %>
 <% end %>
 
-
 <% if current_user.id == @user.id %>
-
-  <%= link_to("Change your password", edit_user_registration_path) %> | <%= link_to("Add audio files", new_useraudiofile_path) %>
+  <%= link_to("Update your location", new_location_path) %><br>
+  <%= link_to("Change your password", edit_user_registration_path) %>
 <% end %>
 
 <% if current_user.id != @user.id %>
