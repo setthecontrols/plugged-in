@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @locations = Location.near([current_user.latitude, current_user.longitude], 10)
+  end
+
   def show
     @user = User.find(params[:id])
     @locations = Location.where(user_id: params[:id])
@@ -38,6 +42,9 @@ class UsersController < ApplicationController
   end
   def update_user_params
     params.require(:user).permit(:first_name, :last_name, :email, :username, :bio, :location, :band_status, :experience, :instruments, :slogan, :avatar, :audio_file_content_type)
+  end
+  def update_user_audio_files_params
+    params.require(:audio).permit(:file)
   end
   def password_params
     params.require(:user).permit(:password, :password_confirmation)

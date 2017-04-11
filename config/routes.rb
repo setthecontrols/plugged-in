@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'searches/advanced_form', to: 'searches#advanced_form'
 
 
+  resources :useraudiofiles
+
   resources :users do
     resources :user_conversations, shallow: true
   end
