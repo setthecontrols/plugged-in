@@ -1,0 +1,6 @@
+<h1>User index page</h1>
+  <% @locations.each do |location| %>
+    <%= location.title %><br />
+    <%= location.user_id %><br />
+    <%= link_to  location.title, user_path(location.user_id) %><br>
+    <% end %>
