@@ -21,8 +21,10 @@
  <source src='/STC_Down_The_Road.mp3' type="audio/mp3">
 </audio>
 
+<% if @user == current_user %>
 <%= link_to("Update your location", new_location_path) %><br>
 <%= link_to("edit profile", edit_user_path(@user) ) %><br>
 <%= link_to("Change your password", edit_user_registration_path) %>
-
+<% else %>
 <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "post"  %>
+<% end %>
