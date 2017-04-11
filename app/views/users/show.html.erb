@@ -22,7 +22,8 @@
 <% @user.useraudiofiles.each do |file| %>
   <%= audio_tag file.media_file_name unless file.media_file_name.blank? %>
 <% end %>
-
+<%= link_to("Upload your music", new_useraudiofile_path) %>
+<br><br><br>
 <% if current_user.id == @user.id %>
   <%= link_to("Update your location", new_location_path) %><br>
   <%= link_to("Change your password", edit_user_registration_path) %>
