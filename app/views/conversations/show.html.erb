@@ -1,0 +1,13 @@
+<h2>yaass</h2>
+<div class="messages">
+  <% if @messages %>
+    <% @messages.each do |message| %>
+      <%= message.content %>
+    <% end %>
+  <% end %>
+</div>
+<form>
+  <label>Say Something: </label>
+  <input type="text" data-behavior="room_speaker">
+</form>
+
