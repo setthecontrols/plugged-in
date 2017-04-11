@@ -6,7 +6,14 @@ App.room = App.cable.subscriptions.create "ConversationChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    $('.messages').append data['message']
+    html = $(data['message'])
+    if data['id'].toString() == @current_user_id()
+      html.addClass('left-align')
+    else
+      html.addClass('right-align')
+
+    console.log(html)
+    $('.messages').append html
 
   conversation_id: ->
     $('.message-list').attr('id')

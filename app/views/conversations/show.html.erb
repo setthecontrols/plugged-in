@@ -4,13 +4,13 @@
   <% if @messages %>
     <% @messages.each do |message| %>
       <% if message.user_id == current_user.id %>
-      <!-- <div class="left-align"> -->
-        <li class="current-user-post"> <%= message.content %></li>
-      <!-- </div> -->
+
+        <li class="left-align"> <%= message.content %></li>
+
       <% else %>
-        <!-- <div class="right-align"> -->
-          <li class="other-user-post"> <%= message.content %></li>
-        <!-- </div> -->
+
+        <li class="right-align"> <%= message.content %></li>
+
       <% end %>
     <% end %>
   <% end %>
