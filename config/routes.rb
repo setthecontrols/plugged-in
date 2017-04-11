@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 
 
   resources :useraudiofiles
-
+  resources :conversations
   resources :users do
     resources :user_conversations, shallow: true
   end
   root to: "pages#home"
 
+  mount ActionCable.server => '/cable'
 end

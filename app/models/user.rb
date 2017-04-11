@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 
+  has_many :messages
   has_many :connections
   has_many :connected_users, through: :connections
   has_many :useraudiofiles
