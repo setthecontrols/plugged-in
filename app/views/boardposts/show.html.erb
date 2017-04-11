@@ -1,5 +1,30 @@
-<h2><%= @post.title %></h2>
-<%= @author.full_name %> <br>
-<%= @post.content %> <br>
 
-<%= link_to "back", boardcategory_boardposts_path(@category)%>
+<div class="container">
+  <h2 class="cyan-text text-darken-3"><strong><%= @post.title %></strong></h2>
+  <div class="row">
+    <div class="col s4">
+      <div class="chip">
+        <%= image_tag "#{@author.avatar}", :alt => "Contact Person" %>
+        <%= link_to "#{@author.full_name}", user_path(@author) %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col s12 l10">
+      <div class="card-panel grey lighten-2 z-depth-3">
+        <span class="flow-text center-align"><%= @post.content %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="chip">
+    <%= @category.name %>
+
+    <i class="close material-icons">close</i>
+  </div>
+</div>
