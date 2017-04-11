@@ -5,11 +5,25 @@
 <div class="container cyan-text text-darken-3">
   <div class="row">
     <div class="col s12 l10">
-<%= form_for [@category, @post] do |f|%>
+<%= form_for [@post] do |f|%>
 <div class="field">
   <%= f.label :title %>
   <%= f.text_field :title %>
 </div>
+
+<div class="input-field">
+  <select name="boardcategory[name]">
+    <option value="Band looking for players">Band Looking For Players</option>
+    <option value="Bands needed">Bands Needed</option>
+    <option value="For sale">For Sale</option>
+    <option value="Players Looking For Bands">Players Looking For Bands</option>
+    <option value="Players Looking To Jam">Players Looking To Jam</option>
+    <option value="Music services">Music services</option>
+    <option value="Paid Gigs">Paid Gigs</option>
+  </select>
+  <label>Category</label>
+</div>
+
 <div class="field">
   <%= f.label :content %>
   <%= f.text_area :content %>
