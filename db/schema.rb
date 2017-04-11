@@ -1,4 +1,4 @@
-This file is auto-generated from the current state of the database. Instead
+# This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
@@ -10,7 +10,9 @@ This file is auto-generated from the current state of the database. Instead
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410072740) do
+
+ActiveRecord::Schema.define(version: 20170411180755) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +38,16 @@ ActiveRecord::Schema.define(version: 20170410072740) do
     t.index ["user_id"], name: "index_boardposts_on_user_id", using: :btree
   end
 
+  create_table "connections", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "connected_user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["connected_user_id"], name: "index_connections_on_connected_user_id", using: :btree
+    t.index ["user_id", "connected_user_id"], name: "index_connections_on_user_id_and_connected_user_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_connections_on_user_id", using: :btree
+  end
+
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,15 +63,12 @@ ActiveRecord::Schema.define(version: 20170410072740) do
     t.integer  "user_id"
   end
 
-  create_table "user_audio_files", force: :cascade do |t|
-    t.string   "audio_file_file_name"
-    t.string   "audio_file_content_type"
-    t.integer  "audio_file_file_size"
-    t.datetime "audio_file_updated_at"
+  create_table "messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "conversation_id"
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.index ["user_id"], name: "index_user_audio_files_on_user_id", using: :btree
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "user_conversations", force: :cascade do |t|
@@ -116,6 +125,8 @@ ActiveRecord::Schema.define(version: 20170410072740) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "connections", "users"
+  add_foreign_key "connections", "users", column: "connected_user_id"
   add_foreign_key "locations", "users"
   add_foreign_key "useraudiofiles", "users"
 end

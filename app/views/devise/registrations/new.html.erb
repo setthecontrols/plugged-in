@@ -40,6 +40,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <label>User Type</label><br>
+      <input type="checkbox" id="musician" />
+      <label for="musician">Musician</label><br>
+      <input type="checkbox" id="band" />
+      <label for="band">Band</label><br>
+      <input type="checkbox" id="venue" />
+      <label for="venue">Venue</label>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

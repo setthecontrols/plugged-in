@@ -1,0 +1,23 @@
+<h2>Your Conversation with <%= @convo.other_user(current_user).username %></h2>
+<div id="<%= @convo.id %>" class="message-list">
+  <ul id="<%= current_user.id %>" class="messages">
+  <% if @messages %>
+    <% @messages.each do |message| %>
+      <% if message.user_id == current_user.id %>
+
+        <li class="left-align"> <%= message.content %></li>
+
+      <% else %>
+
+        <li class="right-align"> <%= message.content %></li>
+
+      <% end %>
+    <% end %>
+  <% end %>
+  </ul>
+</div>
+<form>
+  <label>Say Something: </label>
+  <input type="text" data-behavior="room_speaker">
+</form>
+
