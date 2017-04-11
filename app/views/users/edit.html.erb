@@ -1,60 +1,82 @@
-<h2>Edit <%= @user.username %></h2>
+<div class="container">
+  <h2 class="cyan-text text-darken-3">Edit <%= @user.username %></h2>
+</div>
 
 
-<%= form_for(@user, as: @user, url: "/users/#{@user.id}", html: { multipart: true, method: :patch }) do |f| %>
+<div class="container cyan-text text-darken-3">
+  <div class="row">
+    <div class="col s12 l10">
+      <%= form_for(@user, as: @user, url: "/users/#{@user.id}", html: { multipart: true, method: :patch }) do |f| %>
 
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
+
+      <div class="field">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :location %><br />
+        <%= f.text_field :location %>
+      </div>
+
+      <div class="field">
+        <%= f.label :band_status %>
+        <%= f.text_field :band_status %>
+      </div>
+
+      <div class="input-field">
+        <select name="user[experience]">
+          <option value="" disabled selected><%=@user.experience%></option>
+          <option value="Just started playing">Just started playing</option>
+          <option value="I play with friends a bit">I play with friends a bit</option>
+          <option value="Playing local gigs">Playing local gigs</option>
+          <option value="Brandon Garibaldi">Brandon Garibaldi</option>
+        </select>
+        <label>Experience levels:</label>
+      </div>
+
+      <div class="field">
+        <%= f.label :instruments %><br />
+        <%= f.text_field :instruments %>
+      </div>
+
+      <div class="field">
+        <%= f.label :bio %><br />
+        <%= f.text_area :bio, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :slogan %><br />
+        <%= f.text_field :slogan, autocomplete: "off" %>
+      </div>
+        <div class="field">
+          <%= f.label :avatar %><br />
+          <%= f.file_field :avatar %>
+        </div>
+      <div class="center-align">
+        <div class="actions">
+          <%= f.submit "Update", :class => "waves-effect waves-light btn" %>
+        </div>
+      <% end %>
+    </div>
   </div>
+</div>
+</div>
+<br>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
+<div class="cancel">
+<div class="container">
+  <h2 class="cyan-text text-darken-3">Cancel My Account</h2>
+</div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-
-  <div class="field">
-    <%= f.label :band_status %>
-    <%= f.text_field :band_status %>
-  </div>
-
-  <div class="field">
-    <%= f.label :experience %><br />
-    <%= f.text_area :experience %>
-  </div>
-
-  <div class="field">
-    <%= f.label :instruments %><br />
-    <%= f.text_field :instruments %>
-  </div>
-
-  <div class="field">
-    <%= f.label :bio %><br />
-    <%= f.text_area :bio, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :slogan %><br />
-    <%= f.text_field :slogan, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
+<div class="container">
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+</div>
+</div>
 
-<%= link_to "Back", :back %>
+<button id="cancelaccount" class="white"></button>
