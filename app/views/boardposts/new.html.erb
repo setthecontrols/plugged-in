@@ -1,7 +1,25 @@
-<h2>create post</h2>
+<div class="container">
+  <h2 class="cyan-text text-darken-3">Create A New Posting</h2>
+</div>
+
+<div class="container cyan-text text-darken-3">
+  <div class="row">
+    <div class="col s12 l10">
 <%= form_for [@category, @post] do |f|%>
-  <%= f.text_area :title %>
+<div class="field">
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>
+<div class="field">
+  <%= f.label :content %>
   <%= f.text_area :content %>
-  <%= f.file_field :image %>
-  <%= submit_tag "Submit" %>
+</div>
+<br>
+
+<div class="center-align">
+  <%= submit_tag "Submit", :class => "waves-effect waves-light btn" %>
 <%  end %>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,4 +1,8 @@
-<h2>edit post</h2>
+<div class="container">
+  <h2 class="cyan-text text-darken-3">Edit This Posting</h2>
+</div>
+
+
 <%= form_for [@category, @post, html: {multipart:true}] do |f|%>
   <%= f.text_area :title %>
   <%= f.text_area :content %>

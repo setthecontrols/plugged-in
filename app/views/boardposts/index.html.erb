@@ -1,13 +1,19 @@
-<h2>posts</h2>
+<div class="container">
+  <h2 class="cyan-text text-darken-3"><strong>Postings</strong></h2>
+</div>
+<br>
+<div class="container">
+  <div class="collection">
+    <% @posts.each do |post| %>
+    <%= link_to "#{post.title}", boardcategory_boardpost_path(@category, post), :class => "collection-item cyan-text text-darken-3 center-align grey lighten-3" %>
+    <% end %>
+    <% if @posts.any? %>
+    <%= paginate @posts %>
+    <% end %>
+  </div>
+</div>
+<div class="center-align">
+  <!-- add auth -->
+  <%= link_to "Create Post", new_boardcategory_boardpost_path(@category), :class => "waves-effect waves-light btn valign"%>
 
-<% @posts.each do |post| %>
-  <%= link_to "#{post.title}", boardcategory_boardpost_path(@category, post) %> <br>
-<% end %>
-
-<% if @posts.any? %>
-  <%= paginate @posts %>
-<% end %>
-
-<!-- add auth -->
-  <%= link_to "Create Post", new_boardcategory_boardpost_path(@category)%><br>
   <%= link_to "Back to Categories", boardcategories_path %>

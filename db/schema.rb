@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20170410072740) do
     t.integer  "user_id"
   end
 
+  create_table "user_audio_files", force: :cascade do |t|
+    t.string   "audio_file_file_name"
+    t.string   "audio_file_content_type"
+    t.integer  "audio_file_file_size"
+    t.datetime "audio_file_updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["user_id"], name: "index_user_audio_files_on_user_id", using: :btree
+  end
+
   create_table "user_conversations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "conversation_id"
