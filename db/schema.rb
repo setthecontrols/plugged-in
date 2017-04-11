@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411180755) do
+ActiveRecord::Schema.define(version: 20170411222342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 20170411180755) do
     t.integer  "user_id"
   end
 
+  create_table "user_audio_files", force: :cascade do |t|
+    t.string   "audio_file_file_name"
+    t.string   "audio_file_content_type"
+    t.integer  "audio_file_file_size"
+    t.datetime "audio_file_updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["user_id"], name: "index_user_audio_files_on_user_id", using: :btree
+  end
+
   create_table "user_conversations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "conversation_id"
@@ -80,18 +91,18 @@ ActiveRecord::Schema.define(version: 20170411180755) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "provider"
     t.string   "uid"
     t.string   "first_name"
@@ -111,6 +122,9 @@ ActiveRecord::Schema.define(version: 20170411180755) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "band?",                  default: false, null: false
+    t.boolean  "venue?",                 default: false, null: false
+    t.boolean  "musician?",              default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
