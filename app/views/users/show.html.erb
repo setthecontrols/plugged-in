@@ -1,7 +1,10 @@
 <h3> Hey there, <%= @user.first_name %></h3>
 
+<!-- <% if !current_user %>
+  <%= "Log in to connet with musicians!"  %>
+<% end %> -->
 <%= image_tag @user.avatar.url(:medium) %>
-<% if current_user.id == @user.id %>
+<% if current_user && current_user.id == @user.id %>
   <%= link_to("edit profile", edit_user_path(@user) ) %><br>
 <% end %>
 <%= @user.username %><br>
@@ -12,8 +15,8 @@
 <%= @user.bio %><br>
 <%= @user.experience %><br>
 <%= @user.instruments %><br>
-
-<% if @location != nil %>
+<% console  %>
+<% if current_user && @location != nil %>
   <p> Location: <%= link_to(@user.location, location_path(@location)) %> </p>
 <% else %>
   <p> Location: Not yet set </p>
@@ -24,11 +27,16 @@
 <% end %>
 <%= link_to("Upload your music", new_useraudiofile_path) %>
 <br><br><br>
-<% if current_user.id == @user.id %>
+<% if current_user and current_user.id == @user.id %>
   <%= link_to("Update your location", new_location_path) %><br>
   <%= link_to("Change your password", edit_user_registration_path) %>
 <% end %>
 
-<% if current_user.id != @user.id %>
-  <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "post"  %>
+<% if current_user && current_user.id != @user.id %>
+  <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST"  %>
+    <%  if current_user.connected_users.include?(@user)%>
+      <%= button_to "Disconnect from #{@user.username}", delete_connection_path(@user), method: :delete %>
+    <% else %>
+      <%= button_to "Connect with #{@user.username}", "/user/#{@user.id}/connections", method: "POST" %>
+    <% end %>
 <% end %>
