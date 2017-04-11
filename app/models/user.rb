@@ -8,6 +8,9 @@ class User < ApplicationRecord
                     url: "/assets/:style/:attachment/:style.:extension"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
+
+  has_many :connections
+  has_many :connected_users, through: :connections
   has_many :useraudiofiles
   has_many :boardposts
   has_many :conversations
