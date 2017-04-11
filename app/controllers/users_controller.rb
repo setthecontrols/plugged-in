@@ -39,6 +39,9 @@ class UsersController < ApplicationController
   def update_user_params
     params.require(:user).permit(:first_name, :last_name, :email, :username, :bio, :location, :band_status, :experience, :instruments, :slogan, :avatar, :audio_file_content_type)
   end
+  def update_user_audio_files_params
+    params.require(:audio).permit(:file)
+  end
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
   end

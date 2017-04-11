@@ -1,7 +1,9 @@
 <h3> Hey there, <%= @user.first_name %></h3>
 
 <%= image_tag @user.avatar.url(:medium) %>
-
+<% if current_user.id == @user.id %>
+  <%= link_to("edit profile", edit_user_path(@user) ) %><br>
+<% end %>
 <%= @user.username %><br>
 <%= @user.slogan %><br>
 <%= @user.location %><br>
@@ -11,15 +13,26 @@
 <%= @user.experience %><br>
 <%= @user.instruments %><br>
 
-<p> Location: <%= link_to(@location.title, location_path(@location)) %> </p>
+<% if @location %>
+  <p> Location: <%= link_to(@location.title, location_path(@location)) %> </p>
+  <%= link_to("Update your location", new_location_path) %><br>
+<%  end %>
 
 
-<audio>
- <source src='/STC_Down_The_Road.mp3' type="audio/mp3">
-</audio>
+<!-- <audio>
+ <!-- <source type="audio/mp3"> -->
+</audio> -->
 
-<%= link_to("Update your location", new_location_path) %><br>
-<%= link_to("edit profile", edit_user_path(@user) ) %><br>
-<%= link_to("Change your password", edit_user_registration_path) %>
+<% @user.useraudiofiles.each do |file| %>
+  <%= audio_tag file.media_file_name unless file.media_file_name.blank? %>
+<% end %>
 
-<%= button_to "Create Conversation", user_user_conversations_path(@user), method: "post"  %>
+
+<% if current_user.id == @user.id %>
+
+  <%= link_to("Change your password", edit_user_registration_path) %> | <%= link_to("Add audio files", new_useraudiofile_path) %>
+<% end %>
+
+<% if current_user.id != @user.id %>
+  <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "post"  %>
+<% end %>

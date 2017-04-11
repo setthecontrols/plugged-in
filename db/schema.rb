@@ -95,12 +95,12 @@ ActiveRecord::Schema.define(version: 20170410072740) do
     t.text     "bio"
     t.text     "experience"
     t.string   "instruments"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

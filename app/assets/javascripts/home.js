@@ -1,3 +1,3 @@
-$(document).on('turbolinks:load', function(){
+$(document).on('ready', function(){
   $('.slider').slider({height: 700});
 });
