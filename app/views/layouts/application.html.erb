@@ -37,6 +37,7 @@
           </div>
         <li><a href="/">Home<i class="large material-icons">stars</i></a></li>
         <li><a href="/users/<%=current_user.id%>">Bio<i class="large material-icons">perm_identity</i></a></li>
+
         <li><a href="#!">Messages<i class="large material-icons">message</i></a></li>
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
@@ -45,7 +46,7 @@
                     <div class="collapsible-body">
                       <ul>
                         <%current_user.connections.each do |connection|%>
-                        <li><a href="/users/<%=connection.connected_user.id%>"><%= image_tag connection.connected_user.avatar.url(:small), :class =>"circle" %><%= connection.connected_user.username%></a></li>
+                        <li><a href="/users/<%=connection.connected_user.id%>"><div class="chip"><%= image_tag connection.connected_user.avatar.url(:small)%></div><%= connection.connected_user.username%></a></li>
                         <li><div class="divider"></div></li>
                         <% end %>
                       </ul>
@@ -69,7 +70,7 @@
             <div class="background">
               <%=image_tag "studio1.jpg"%>
             </div>
-            <a><%= image_tag "guest.png", :class =>"circle" %></a>
+            <a><%= image_tag "guest.png", :class =>"chip" %></a>
             <span class="cyan-text text-darken-3 name"><strong>Guest</strong></span>
           </div></li>
           <li><a class="subheader">This is Plugged-In</a></li>

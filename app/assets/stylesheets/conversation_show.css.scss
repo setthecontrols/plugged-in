@@ -14,7 +14,7 @@
 .message.left
 {
     float: left;
-    background-color: #EFF1F3;
+    background-color: #DADCDD;
 }
 
 .message.left:after
@@ -28,7 +28,7 @@
     width: 0px;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-right: 8px solid #EFF1F3;
+    border-right: 8px solid #DADCDD;
 }
 
 .message.left:before
@@ -82,4 +82,21 @@
 .clear
 {
     clear: both;
+}
+
+div.relative{
+  position: relative;
+
+}
+span.absolute {
+    position: absolute;
+    right: 62px;
+    width: auto;
+    height: auto;
+}
+
+div.relative.right
+{
+display: inline-block;
+
 }
