@@ -21,7 +21,16 @@ class User < ApplicationRecord
   # validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   def full_name
+    if first_name != nil && last_name != nil
     first_name + " " + last_name
+    else
+      username
+    end
+  end
+
+  def find_location
+    locations = Location.order(created_at: :desc)
+    locations.find_by(user_id: self.id)
   end
 
   def self.create_with_omniauth(auth)
