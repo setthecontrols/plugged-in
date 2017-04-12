@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411222342) do
+ActiveRecord::Schema.define(version: 20170412065444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,15 +125,16 @@ ActiveRecord::Schema.define(version: 20170411222342) do
     t.text     "bio"
     t.text     "experience"
     t.string   "instruments"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
     t.boolean  "band?",                  default: false, null: false
     t.boolean  "venue?",                 default: false, null: false
     t.boolean  "musician?",              default: false, null: false
+    t.float    "distance"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

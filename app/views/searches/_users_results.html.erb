@@ -1,4 +1,14 @@
 <h3>Users: </h3>
+
+<% @results[:users].each do |user| %>
+  <% location = user.find_location %>
+  <% if location != nil %>
+  <% user.distance = location.distance_to([current_user.latitude, current_user.longitude]) %>
+  <% end %>
+<% end %>
+
+<% @results[:users].sort! { |a, b| a.distance <=> b.distance } %>
+
 <% @results[:users].each do |user| %>
   <% location = user.find_location %>
   <% if location != nil %>
