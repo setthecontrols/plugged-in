@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20170412000918) do
     t.integer  "conversation_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.time     "lkp"
+    t.string   "lkp"
   end
 
   create_table "useraudiofiles", force: :cascade do |t|

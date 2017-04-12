@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :connected_users, through: :connections
   has_many :useraudiofiles
   has_many :boardposts
-  has_many :conversations
   has_many :dragonflymedia
   has_many :locations
 
@@ -47,6 +46,24 @@ class User < ApplicationRecord
       end
     end
     return unreads
+  end
+
+  def find_convo(user)
+    self.conversations.each do |convo|
+      if convo.other_user(self) == user
+        return convo
+      end
+    end
+    nil
+  end
+
+  def has_convo?(user)
+    self.conversations.each do |convo|
+      if convo.other_user(self) == user
+        return true
+      end
+    end
+    false
   end
 
 end

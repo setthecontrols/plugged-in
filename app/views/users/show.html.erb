@@ -32,11 +32,15 @@
   <%= link_to("Change your password", edit_user_registration_path) %>
 <% end %>
 
-<% if current_user && current_user.id != @user.id %>
-  <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST"  %>
-    <%  if current_user.connected_users.include?(@user)%>
-      <%= button_to "Disconnect from #{@user.username}", delete_connection_path(@user), method: :delete %>
-    <% else %>
-      <%= button_to "Connect with #{@user.username}", "/user/#{@user.id}/connections", method: "POST" %>
-    <% end %>
+<% if current_user && current_user.id != @user.id%>
+  <% if !current_user.has_convo?(@user) %>
+    <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST"  %>
+  <% else %>
+    <%= link_to "Message", conversation_path(current_user.find_convo(@user)) %>
+  <% end %>
+  <%  if current_user.connected_users.include?(@user)%>
+    <%= button_to "Disconnect from #{@user.username}", delete_connection_path(@user), method: :delete %>
+  <% else %>
+    <%= button_to "Connect with #{@user.username}", "/user/#{@user.id}/connections", method: "POST" %>
+  <% end %>
 <% end %>
