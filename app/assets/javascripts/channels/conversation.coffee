@@ -12,7 +12,6 @@ App.room = App.cable.subscriptions.create "ConversationChannel",
     else
       html.addClass('right')
 
-    console.log(html)
     $('.messages').append html
 
   conversation_id: ->
