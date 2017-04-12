@@ -1,23 +1,39 @@
-<h2>Your Conversation with <%= @convo.other_user(current_user).username %></h2>
-<div id="<%= @convo.id %>" class="message-list">
-  <ul id="<%= current_user.id %>" class="messages">
-  <% if @messages %>
-    <% @messages.each do |message| %>
-      <% if message.user_id == current_user.id %>
-
-        <li class="left-align"> <%= message.content %></li>
-
-      <% else %>
-
-        <li class="right-align"> <%= message.content %></li>
-
-      <% end %>
-    <% end %>
-  <% end %>
-  </ul>
+<div class="container">
+  <h2 class="cyan-text text-darken-3">Your Conversation with <%= @convo.other_user(current_user).username %></h2>
 </div>
-<form>
-  <label>Say Something: </label>
-  <input type="text" data-behavior="room_speaker">
-</form>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col s9 grey lighten-2">
+      <div id="<%= @convo.id %>" class="message-list">
+        <ul id="<%= current_user.id %>" class="messages">
+          <% if @messages %>
+          <% @messages.each do |message| %>
+          <% if message.user_id == current_user.id %>
+          <span class="message left"> <%= message.content %></span>
+          <div class="clear"></div>
 
+          <% else %>
+          <span class="message right"> <%= message.content %></span>
+          <div class="clear"></div>
+
+          <% end %>
+          <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col s12 l12">
+          <div class="card z-depth-5">
+            <form>
+              <div class="input-field cyan darken-3">
+                <label class="black-text">Say Something: </label>
+                <input type="search" data-behavior="room_speaker">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

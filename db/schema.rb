@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170411222342) do
     t.integer  "conversation_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "lkp"
   end
 
   create_table "useraudiofiles", force: :cascade do |t|
@@ -124,12 +125,12 @@ ActiveRecord::Schema.define(version: 20170411222342) do
     t.text     "bio"
     t.text     "experience"
     t.string   "instruments"
-    t.float    "latitude"
-    t.float    "longitude"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
     t.boolean  "band?",                  default: false, null: false
     t.boolean  "venue?",                 default: false, null: false
     t.boolean  "musician?",              default: false, null: false
