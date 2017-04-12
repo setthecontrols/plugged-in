@@ -9,4 +9,9 @@ class Boardpost < ApplicationRecord
   validates :title, :content, presence: true
 
   paginates_per 25
+
+  def find_location
+    locations = Location.order(created_at: :desc)
+    locations.find_by(user_id: self.user_id)
+  end
 end
