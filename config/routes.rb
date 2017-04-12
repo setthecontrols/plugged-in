@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :boardposts
 
+  resources :tags, only: [:new, :create] do
+    resources :post_tags, only: [:new, :create]
+  end
 
   resources :locations, except: [:update, :edit, :destroy]
 

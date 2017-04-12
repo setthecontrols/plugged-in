@@ -3,9 +3,10 @@
 </div>
 
 
-<%= form_for [@category, @post, html: {multipart:true}] do |f|%>
+<%= form_for @post, html: {multipart:true} do |f|%>
   <%= f.text_area :title %>
   <%= f.text_area :content %>
-  <%= form.file_field :image %>
+  <%= f.file_field :image %>
+  <%= link_to 'Add Another Tag', new_tag_path, :class => "addTag"%>
   <%= submit_tag "Submit" %>
 <%  end %>
