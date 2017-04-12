@@ -5,7 +5,7 @@
 <div class="container cyan-text text-darken-3">
   <div class="row">
     <div class="col s12 l10">
-<%= form_for [@category, @post] do |f|%>
+<%= form_for @post do |f|%>
 <div class="field">
   <%= f.label :title %>
   <%= f.text_field :title %>

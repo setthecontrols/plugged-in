@@ -1,11 +1,7 @@
 class BoardpostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:show]
   before_action :find_post, only: [:show, :edit, :delete, :update]
-  before_action :find_cat, only: [:new, :create, :index]
-  before_action :find_cat_through_post, except: [:new, :create, :index]
-  def index
-    @posts = @category.boardposts.page params[:page]
-  end
+  before_action :find_cat_through_post, except: [:new, :create]
 
   def show
     @author = User.find(@post.user_id)
@@ -16,11 +12,12 @@ class BoardpostsController < ApplicationController
   end
 
   def create
+    @category = Boardcategory.find_by(name: params[:boardcategory][:name])
     @post = Boardpost.new(post_params)
     @post.user_id = current_user.id
     @post.boardcategory_id = @category.id
     if @post.save
-      redirect_to boardcategory_boardpost_path(@category, @post)
+      redirect_to boardpost_path(@post)
     else
       @errors = @post.errors.full_messages
       render :new
@@ -53,9 +50,6 @@ class BoardpostsController < ApplicationController
       @post = Boardpost.find(params[:id])
     end
 
-    def find_cat
-      @category = Boardcategory.find(params[:boardcategory_id])
-    end
 
     def find_cat_through_post
       @category = Boardcategory.find(@post.boardcategory_id)
