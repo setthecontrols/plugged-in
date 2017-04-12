@@ -1,0 +1,9 @@
+<h2>Conversations</h2>
+
+<% @conversations.each do |convo| %>
+  <%= link_to "#{convo.other_user(@user).username}", conversation_path(convo)%> <br>
+  <% @UC = UserConversation.find_by(conversation_id: convo.id, user_id: @user.id) %>
+  <% if @UC.unread_messages %>
+    <p><%= @UC.unread_messages.length %> unread messages</p> <br>
+  <% end %>
+<% end %>
