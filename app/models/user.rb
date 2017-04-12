@@ -8,7 +8,8 @@ class User < ApplicationRecord
                     url: "/assets/:style/:attachment/:style.:extension"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
-
+  has_many :user_conversations
+  has_many :conversations, through: :user_conversations
   has_many :messages
   has_many :connections
   has_many :connected_users, through: :connections
@@ -36,6 +37,16 @@ class User < ApplicationRecord
       user.save!
       user
     end
+  end
+
+  def unread_messages
+    unreads = []
+    self.user_conversations.each do |uc|
+      uc.unread_messages.each do |message|
+        unreads << message
+      end
+    end
+    return unreads
   end
 
 end
