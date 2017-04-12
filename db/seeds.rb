@@ -29,16 +29,16 @@ post_categories = ["Band looking for players", "Bands needed", "For sale", "Play
   )
 end
 
-# post_categories.each do |category|
-#   Boardcategory.create!(name: category)
-# end
-
-i = 1
-30.times do
-  Boardcategory.create!(name: "CATEGORY#{i}")
-  i += 1
+post_categories.each do |category|
+  Boardcategory.create!(name: category)
 end
 
+# i = 1
+# 30.times do
+#   Boardcategory.create!(name: "CATEGORY#{i}")
+#   i += 1
+# end
+
 200.times do
-  Boardpost.create!(title: "Title", content: "Content", boardcategory_id: rand(1..30), user_id: rand(1..30))
+  Boardpost.create!(title: "Title", content: "Content", boardcategory_id: rand(1..7), user_id: rand(1..30))
 end
