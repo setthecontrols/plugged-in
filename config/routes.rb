@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :boardcategories, only: [:index] do
-    resources :boardposts
-  end
+  resources :boardcategories, only: [:index, :show]
+
+  resources :boardposts
+
 
   resources :locations, except: [:update, :edit, :destroy]
 
