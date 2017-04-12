@@ -36,7 +36,7 @@
       users = User.all
       results[:users] = []
       if model == "users-all"
-        results[:users] << users.select {|user| user.full_name.downcase.include?(keyword) || user.username.include?(keyword)}
+        results[:users] << users.select {|user| user.full_name.downcase.include?(keyword) || user.username.downcase.include?(keyword)}
         results[:users].flatten!
         results[:users] << users.select {|user| user.instruments != nil && user.instruments.downcase.include?(keyword)}
         results[:users].flatten!
