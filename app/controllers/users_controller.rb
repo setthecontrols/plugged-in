@@ -4,6 +4,19 @@ class UsersController < ApplicationController
     @locations = Location.near([current_user.latitude, current_user.longitude], 10)
   end
 
+  def feed
+    @user = current_user
+    @feed = @user.all_feeds
+    @posts = Boardpost.all
+    @categories = Boardcategory.all
+    @users = User.all
+
+    p '*'* 80
+    p "we're peeing out @users!!"
+    p @users
+
+   end
+
   def show
     @user = User.find(params[:id])
     @locations = Location.where(user_id: params[:id])
@@ -25,8 +38,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    p "*"*30
-    p update_user_params
     @user = User.find(params[:id])
     if @user.update_attributes(update_user_params)
       bypass_sign_in(@user)
