@@ -1,0 +1,5 @@
+<%= form_for @tag html: {:class => "new-tag-form"} do |f|%>
+  <%= f.label :Tag %>
+  <%= f.text_field :name %>
+  <%= f.submit "Add"%>
+<% end %>

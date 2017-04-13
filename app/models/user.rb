@@ -75,4 +75,21 @@ class User < ApplicationRecord
     false
   end
 
+  def possible_connections
+    @CU = self.connected_users
+    @CUC = []
+    @CU.each do |user|
+      @CUC << user.connected_users
+    end
+    @CUC = @CUC.filter {|user| user != self || !@CU.include?(user)}
+    @CUC.shuffle!
+    @top_CUC = @CUC[0..4]
+    @top_CUC.uniq!
+    i = 5
+    while(@top_CUC.length != 5 || i < @CUC.length - 1) do
+      @top_CUC << @CUC[i]
+      i += 1
+    end
+    return @top_CUC
+  end
 end
