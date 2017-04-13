@@ -7,6 +7,9 @@
         <%= image_tag "#{@author.avatar}", :alt => "Contact Person" %>
         <%= link_to "#{@author.full_name}", user_path(@author) %>
       </div>
+      <% if @author == current_user %>
+        <%= link_to 'Edit Post', edit_boardpost_path(@post) %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -23,7 +26,8 @@
 </div>
 <div class="container">
   <div class="chip">
-    <%= @category.name %>
+    <%= link_to "#{@category.name}", boardcategory_path(@category)%>
+
 
     <i class="close material-icons">close</i>
   </div>
