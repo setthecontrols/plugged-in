@@ -1,0 +1,31 @@
+
+
+<% @feed.each do |f| %>
+  <div class="">
+    <% if f.class == Boardpost %>
+      <%= "Your friend  posted something" %>
+      <%= "Category: #{@categories.find_by(id: f.boardcategory_id).name} Title: #{f.title}"  %><br>
+      <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %><br><br>
+    </div>
+    <div class="">
+
+    <% elsif f.class == Connection && f.user_id == @user.id%>
+      <%= "You're connected to #{@user.find(f.connected_user_id).username} now." %><br>
+      <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %><br><br>
+    </div>
+    <div class="">
+
+    <% elsif f.class == Connection %>
+      <%= "#{@users.find_by(id: f.user_id).username} connected with #{@users.find_by(id: f.connected_user_id).username}." %><br>
+      <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %><br><br>
+    </div>
+
+    <div class="">
+      <% elsif f.class == Useraudiofile %>
+        <%= "#{@users.find_by(id: f.user_id).username} uploaded some music." %><br>
+        <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %><br><br>
+    </div>
+
+    <% end %>
+
+<% end %>
