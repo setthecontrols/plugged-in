@@ -8,9 +8,13 @@ App.room = App.cable.subscriptions.create "ConversationChannel",
   received: (data) ->
     html = $(data['message'])
     if data['id'].toString() == @current_user_id()
-      html.addClass('left')
+      $(html[0].children[0]).addClass('left')
+      $(html[0].children[1]).addClass('left')
+
     else
-      html.addClass('right')
+      debugger
+      $(html[0].children[0]).addClass('right')
+      $(html[0].children[1]).addClass('right absolute')
 
     $('.messages').append html
 
