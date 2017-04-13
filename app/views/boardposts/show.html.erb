@@ -8,7 +8,9 @@
         <%= link_to "#{@author.full_name}", user_path(@author) %>
       </div>
       <% if @author == current_user %>
-        <%= link_to 'Edit Post', edit_boardpost_path(@post) %>
+        <%= link_to 'Edit Post', edit_boardpost_path(@post) %> | <%= link_to "Delete Post", delete_post_path, :class => "waves-effect"  %>
+
+
       <% end %>
     </div>
   </div>

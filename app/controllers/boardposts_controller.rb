@@ -17,7 +17,7 @@ class BoardpostsController < ApplicationController
     @post.user_id = current_user.id
     @post.boardcategory_id = @category.id
     if @post.save
-      redirect_to boardpost_path(@post)
+      redirect_to boardcategories_path
     else
       @errors = @post.errors.full_messages
       render :new
@@ -37,7 +37,7 @@ class BoardpostsController < ApplicationController
     if current_user.id == @post.user_id
       @post.destroy
     end
-    redirect_to '/'
+    redirect_to '/boardcategories'
     # make it go to a success page?
   end
 
