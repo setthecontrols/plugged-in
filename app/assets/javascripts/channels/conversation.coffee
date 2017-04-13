@@ -8,11 +8,13 @@ App.room = App.cable.subscriptions.create "ConversationChannel",
   received: (data) ->
     html = $(data['message'])
     if data['id'].toString() == @current_user_id()
-      html.addClass('left-align')
-    else
-      html.addClass('right-align')
+      $(html[0].children[0]).addClass('left')
+      $(html[0].children[1]).addClass('left')
 
-    console.log(html)
+    else
+      $(html[0].children[0]).addClass('right')
+      $(html[0].children[1]).addClass('right absolute')
+
     $('.messages').append html
 
   conversation_id: ->
@@ -32,5 +34,3 @@ $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
     App.room.speak data
     event.target.value = ''
     event.preventDefault()
-
-

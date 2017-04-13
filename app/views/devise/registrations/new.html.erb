@@ -12,17 +12,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-
-
-  <div class="field">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true %>
   </div>
@@ -38,6 +27,16 @@
   <div class="field">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <label>User Type</label><br>
+      <input type="checkbox" id="musician" />
+      <label for="musician">Musician</label><br>
+      <input type="checkbox" id="band" />
+      <label for="band">Band</label><br>
+      <input type="checkbox" id="venue" />
+      <label for="venue">Venue</label>
   </div>
 
   <div class="actions">

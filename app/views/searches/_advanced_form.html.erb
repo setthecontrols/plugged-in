@@ -1,5 +1,17 @@
 <form action="/searches/advanced" method="get">
-  Where: <input name="model" type="text"> <br>
-  What: <input name="keyword" type="text"> <br>
+  <div class="input-field">
+    <select name="model">
+      <option value="users-all">Musicians</option>
+      <option value="posts">Postings</option>
+      <option value="categories">Listing Categories</option>
+      <option value="users-location">Location</option>
+      <option value="users-genre">Genres</option>
+      <option value="users-instruments">Instruments</option>
+      <option value="users-name">Musicians by Name</option>
+
+    </select>
+    <label>Specified Search</label>
+  </div>
+  Keywords: <input name="keyword" type="text"> <br>
   <input type="submit" value="Search">
 </form>

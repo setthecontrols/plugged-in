@@ -2,12 +2,17 @@ class ConnectionsController < ApplicationController
 
   before_action :authenticate_user!
 
+  def index
+    @user = User.find(params[:user_id])
+    @connected_users = @user.connected_users
+    @possible_connections = @user.possible_connections
+  end
+
   def new
     @connection = Connection.new
   end
 
   def create
-    p "*" * 200
     @logged_in_user = current_user
     @user = User.find(params[:user_id])
 

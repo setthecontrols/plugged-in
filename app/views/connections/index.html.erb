@@ -1,0 +1,13 @@
+<h1>Connections</h1>
+
+<% @connected_users.each do |user| %>
+  <%= link_to "#{user.username}", user_path(user) %> <br>
+<% end %>
+
+<h2>Possible connections</h2>
+
+
+<% @possible_connections.each do |user| %>
+  <%= link_to "#{user.username}", user_path(user) %> <br>
+<% end %>
+

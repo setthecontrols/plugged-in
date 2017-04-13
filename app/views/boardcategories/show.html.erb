@@ -5,7 +5,7 @@
 <div class="container">
   <div class="collection">
     <% @posts.each do |post| %>
-    <%= link_to "#{post.title}", boardcategory_boardpost_path(@category, post), :class => "collection-item cyan-text text-darken-3 center-align grey lighten-3" %>
+    <%= link_to "#{post.title}", boardpost_path(post), :class => "collection-item cyan-text text-darken-3 center-align grey lighten-3" %>
     <% end %>
     <% if @posts.any? %>
     <%= paginate @posts %>
@@ -14,6 +14,7 @@
 </div>
 <div class="center-align">
   <!-- add auth -->
-  <%= link_to "Create Post", new_boardcategory_boardpost_path(@category), :class => "waves-effect waves-light btn valign"%>
+  <%= link_to "Create Post", new_boardpost_path, :class => "waves-effect waves-light btn valign", id: @category.id%>
 
+</div>
   <%= link_to "Back to Categories", boardcategories_path %>

@@ -1,3 +1,5 @@
 
-<li><%= message.content %></li>
-
+    <div class="relative">
+      <div class="chip"><%= image_tag message.user.avatar.url(:medium)%></div>
+        <span class="message"> <%= message.content %></span></div>
+      <div class="clear"></div>

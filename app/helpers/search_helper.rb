@@ -34,25 +34,25 @@
       results[:posts] = posts.select {|post| post.title.downcase.include?(keyword) }
     elsif model.include?("users")
       users = User.all
+      results[:users] = []
       if model == "users-all"
-        results[:users] = []
-        results[:users] << users.select {|user| user.full_name.downcase.include?(keyword) || user.username.include?(keyword)}
+        results[:users] << users.select {|user| user.full_name.downcase.include?(keyword) || user.username.downcase.include?(keyword)}
         results[:users].flatten!
-        results[:users] << users.select {|user| user.instruments.downcase.include?(keyword)}
+        results[:users] << users.select {|user| user.instruments != nil && user.instruments.downcase.include?(keyword)}
         results[:users].flatten!
-        results[:users] << users.select {|user| user.location.downcase.include?(keyword)}
+        results[:users] << users.select {|user| user.location != nil && user.location.downcase.include?(keyword)}
         results[:users].flatten!
-        results[:users] << users.select {|user| user.genre.downcase.include?(keyword)}
+        results[:users] << users.select {|user| user.genre != nil && user.genre.downcase.include?(keyword)}
         results[:users].flatten!
         results[:users].uniq!
       elsif model == "users-location"
-        results[:users] << users.select {|user| user.location.downcase.include?(keyword)}
+        results[:users] << users.select {|user| user.location != nil && user.location.downcase.include?(keyword)}
         results[:users].flatten!
       elsif model == "users-genre"
-        results[:users] << users.select {|user| user.genre.downcase.include?(keyword)}
+        results[:users] << users.select {|user| user.genre != nil && user.genre.downcase.include?(keyword)}
         results[:users].flatten!
       elsif model == "users-instruments"
-        results[:users] << users.select {|user| user.instruments.downcase.include?(keyword)}
+        results[:users] << users.select {|user| user.instruments != nil && user.instruments.downcase.include?(keyword)}
         results[:users].flatten!
       elsif model == "users-name"
          results[:users] << users.select {|user| user.full_name.downcase.include?(keyword) || user.username.downcase.include?(keyword)} #make a full_name method
