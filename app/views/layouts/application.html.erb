@@ -46,8 +46,13 @@
                     <div class="collapsible-body">
                       <ul>
                         <%current_user.connections.each do |connection|%>
-                        <li><a href="/users/<%=connection.connected_user.id%>"><div class="chip"><%= image_tag connection.connected_user.avatar.url(:small)%></div><%= connection.connected_user.username%></a></li>
-                        <li><div class="divider"></div></li>
+                        <li><a href="/users/<%=connection.connected_user.id%>">
+                          <div class="relative">
+                          <div class="profilecontainer"><%= image_tag connection.connected_user.avatar.url(:large), :class => "profimage"%></div></div>
+                          <div class="relative">
+                          <div class ="connectname black-text"><strong><%= connection.connected_user.username%></strong></div></a></div></li>
+                        <li>
+                          <div class="divider"></div></li>
                         <% end %>
                       </ul>
                     </div>
