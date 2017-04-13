@@ -41,6 +41,6 @@
   <%  if current_user.connected_users.include?(@user)%>
     <%= button_to "Disconnect from #{@user.username}", delete_connection_path(@user), method: :delete %>
   <% else %>
-    <%= button_to "Connect with #{@user.username}", "/user/#{@user.id}/connections", method: "POST" %>
+    <%= button_to "Connect with #{@user.username}", "/users/#{@user.id}/connections", method: "POST" %>
   <% end %>
 <% end %>
