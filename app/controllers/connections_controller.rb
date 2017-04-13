@@ -3,8 +3,9 @@ class ConnectionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user = User.find(params[:id])
-    @connected_users = @user.connnected_users
+    @user = User.find(params[:user_id])
+    @connected_users = @user.connected_users
+    @possible_connections = @user.possible_connections
   end
 
   def new
