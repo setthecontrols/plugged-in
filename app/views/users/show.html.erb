@@ -1,46 +1,102 @@
-<h3> Hey there, <%= @user.first_name %></h3>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col s12 l5">
+      <div class="card-panel grey lighten-2 z-depth-5">
+        <div class="row">
+          <div class="col s12">
+            <div class="center-align">
+              <%= image_tag @user.avatar.url(:thumb), :class => "circle responsive-img" %>
+              <span class="cyan-text text-darken-3">
+                <h3><strong><%= @user.username %></strong></h3>
+                <%= @user.slogan %><br>
+                <br>
+                <div class="row">
+                  <div class="col s12 l6">
+                    <% if current_user && current_user.id == @user.id %>
+                    <%= link_to("edit profile", edit_user_path(@user), :class => "waves-effect waves-light btn" ) %></div>
+                    <div class="col s12 l6">
+                      <%= link_to("Change password", edit_user_registration_path, :class => "waves-effect waves-light btn") %></div>
+                      <% end %>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col s12 l3">
+          <div class="card-panel grey lighten-2 z-depth-5">
+            <div class="card-content cyan-text text-darken-3">
+              <span class="card-title"><h4>
+                <i class="material-icons">info_outline</i>
+                <strong>Info</strong></h4></span>
+                <p>
+                  <span><h6><strong>Location: </strong><%= @user.location %></h6></span>
+                  <span><h6><strong>Band Status: </strong><%= @user.band_status %></h6></span>
+                  <span><h6><strong>Genre: </strong><%= @user.genre %></h6></span>
+                  <span><h6><strong>Experience: </strong><%= @user.experience %></h6></span>
+                  <span><h6><strong>Instruments: </strong><%= @user.instruments %></h6></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 l3">
+            <div class="card-panel grey lighten-2 z-depth-5">
+              <div class="card-content cyan-text text-darken-3">
+                <span class="card-title"><h4>
+                  <i class="material-icons">perm_identity</i>
+                  <strong>Bio</strong></h4></span>
+                  <p>
+                    <%= @user.bio %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<!-- <% if !current_user %>
-  <%= "Log in to connet with musicians!"  %>
-<% end %> -->
-<%= image_tag @user.avatar.url(:medium) %>
-<% if current_user && current_user.id == @user.id %>
-  <%= link_to("edit profile", edit_user_path(@user) ) %><br>
-<% end %>
-<%= @user.username %><br>
-<%= @user.slogan %><br>
-<%= @user.location %><br>
-<%= @user.band_status %><br>
-<%= @user.genre %><br>
-<%= @user.bio %><br>
-<%= @user.experience %><br>
-<%= @user.instruments %><br>
-<% console  %>
-<% if current_user && @location != nil %>
-  <p> Location: <%= link_to(@user.location, location_path(@location)) %> </p>
-<% else %>
-  <p> Location: Not yet set </p>
-<% end %>
 
-<% @user.useraudiofiles.each do |file| %>
-  <%= audio_tag file.media_file_name unless file.media_file_name.blank? %>
-<% end %>
-<%= link_to("Upload your music", new_useraudiofile_path) %>
-<br><br><br>
-<% if current_user and current_user.id == @user.id %>
-  <%= link_to("Update your location", new_location_path) %><br>
-  <%= link_to("Change your password", edit_user_registration_path) %>
-<% end %>
 
-<% if current_user && current_user.id != @user.id%>
-  <% if !current_user.has_convo?(@user) %>
-    <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST"  %>
-  <% else %>
-    <%= link_to "Message", conversation_path(current_user.find_convo(@user)) %>
-  <% end %>
-  <%  if current_user.connected_users.include?(@user)%>
-    <%= button_to "Disconnect from #{@user.username}", delete_connection_path(@user), method: :delete %>
-  <% else %>
-    <%= button_to "Connect with #{@user.username}", "/users/#{@user.id}/connections", method: "POST" %>
-  <% end %>
-<% end %>
+        <!-- <% if !current_user %>
+        <%= "Log in to connet with musicians!"  %>
+        <% end %> -->
+
+      <div class="container">
+        <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Upload Your Music!</a>
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+          <%=render "/useraudiofiles/new"%>
+          </div>
+        </div>
+        </div>
+      </div>
+
+        <% if current_user && @location != nil %>
+        <p> Location: <%= link_to(@user.location, location_path(@location)) %> </p>
+        <% else %>
+        <p> Location: Not yet set </p>
+        <% end %>
+
+        <% @user.useraudiofiles.each do |file| %>
+        <%= audio_tag file.media_file_name unless file.media_file_name.blank? %>
+        <% end %>
+        <br><br><br>
+        <% if current_user && current_user.id == @user.id %>
+        <%= link_to("Update your location", new_location_path) %><br>
+        <% end %>
+
+        <% if current_user && current_user.id != @user.id%>
+        <% if !current_user.has_convo?(@user) %>
+        <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST"  %>
+        <% else %>
+        <%= link_to "Message", conversation_path(current_user.find_convo(@user)) %>
+        <% end %>
+        <%  if current_user.connected_users.include?(@user)%>
+        <%= button_to "Disconnect from #{@user.username}", delete_connection_path(@user), method: :delete %>
+        <% else %>
+        <%= button_to "Connect with #{@user.username}", "/users/#{@user.id}/connections", method: "POST" %>
+        <% end %>
+        <% end %>

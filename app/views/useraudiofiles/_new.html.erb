@@ -1,6 +1,6 @@
 <h2>Add your tracks.</h2>
 
-<%= form_for @audio_file do |f| %>
+<%= form_for Useraudiofile.new do |f| %>
   <fieldset class="form-group">
     <%= f.label :media %>
     <%= f.file_field :media, type: :file, multiple: true %>
