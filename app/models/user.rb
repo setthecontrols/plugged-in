@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_attached_file :avatar,
-                    styles: { large: "600x600>", medium: "300x300>", small: "100x100>", thumb: "150x150#" },
+                    styles: { large: "600x600>", medium: "300x300>", small: "90x90>", thumb: "150x150#" },
                     url: "/assets/:style/:attachment/:style.:extension"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 

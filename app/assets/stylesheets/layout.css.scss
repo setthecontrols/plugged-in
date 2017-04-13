@@ -1,0 +1,24 @@
+.profimage{
+  width: 100px;
+  height: 100px;
+  object-fit:fill;
+  background-position: center;
+}
+
+.profilecontainer{
+  width: 100px;
+  height:55px;
+  overflow: hidden;
+  position: absolute;
+  left: -25px;
+  }
+  div.relative{
+    position: relative;
+}
+
+.connectname{
+  position: absolute;
+  left: 110px;
+  bottom: -5px;
+
+}
