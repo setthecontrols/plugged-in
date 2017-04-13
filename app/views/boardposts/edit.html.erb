@@ -6,7 +6,9 @@
 <%= form_for @post, html: {multipart:true} do |f|%>
   <%= f.text_area :title %>
   <%= f.text_area :content %>
+  <div id="tag-form">
+  </div>
+  <%= link_to 'Add Tag', new_tag_path, :class => "addTag"%> <br>
   <%= f.file_field :image %>
-  <%= link_to 'Add Another Tag', new_tag_path, :class => "addTag"%>
   <%= submit_tag "Submit" %>
 <%  end %>

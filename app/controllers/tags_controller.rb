@@ -2,6 +2,9 @@ class TagsController < ApplicationController
 
   def new
     @tag = Tag.new
+    if request.xhr?
+      render '/tags/_new', layout: false, locals: {tag: @tag}
+    end
   end
 
   def create

@@ -12,7 +12,6 @@ App.room = App.cable.subscriptions.create "ConversationChannel",
       $(html[0].children[1]).addClass('left')
 
     else
-      debugger
       $(html[0].children[0]).addClass('right')
       $(html[0].children[1]).addClass('right absolute')
 
