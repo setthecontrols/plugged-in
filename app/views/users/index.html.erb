@@ -1,6 +1,44 @@
 <h1>User index page</h1>
+
+<br>
+<div class="center-align">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l12">
+        <div class="card">
+          <form>
+            <div class="input-field">
+              <input id="search" type="search" name="keyword" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="center-align">
+  <input type="submit" value="Search" class="btn valign"><br>
+  <br>
+
+<a class="waves-effect waves-light btn-small" href="#modal1">Advanced Search</a>
+<div id="modal1" class="modal">
+  <div class="modal-content">
+  <%=render "/searches/advanced_form"%>
+  </div>
+</div>
+</div>
+
   <% @locations.each do |location| %>
     <%= location.title %><br />
     <%= location.user_id %><br />
     <%= link_to  location.title, user_path(location.user_id) %><br>
     <% end %>
+
+<%@users.each do |u| %>
+  <%=link_to "#{u.username}", user_path(u.id) %>, zip code:  <%=u.location %><br>
+  <%="Playing styles #{u.genre}" %><br><br>
+
+
+<% end %>

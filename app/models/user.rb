@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_attached_file :avatar,
 
                     styles: { large: "600x600>", medium: "300x300>", small: "100x100>", thumb: "150x150#" },
-                    url: "/assets/:style/:attachment/:style.:extension"
+                    url: "/assets/:style/:attachment/:filename.:extension"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 

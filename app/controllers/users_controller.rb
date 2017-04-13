@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @locations = Location.near([current_user.latitude, current_user.longitude], 10)
+    @users = User.all
   end
 
   def feed
@@ -21,6 +22,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @connections = @user.connections
     @locations = Location.where(user_id: params[:id])
+    @user = User.find(current_user.id)
+    @locations = Location.where(user_id: current_user.id)
     @location = @locations.last
   end
 
