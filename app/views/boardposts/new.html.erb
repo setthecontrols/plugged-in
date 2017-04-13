@@ -2,6 +2,12 @@
   <h2 class="cyan-text text-darken-3">Create A New Posting</h2>
 </div>
 
+<% if @errors %>
+  <% @errors.each do |message| %>
+    <%= message %> <br>
+  <% end %>
+<% end %>
+
 <div class="container cyan-text text-darken-3">
   <div class="row">
     <div class="col s12 l10">

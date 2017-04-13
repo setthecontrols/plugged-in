@@ -1,0 +1,19 @@
+<h3>Posts: </h3>
+
+<% @results[:posts].each do |post| %>
+  <% location = post.find_location %>
+  <% if location != nil %>
+    <% post.distance = location.distance_to([current_user.latitude, current_user.longitude]) %>
+  <% end %>
+<% end %>
+
+<% @results[:posts].sort! { |a, b| a.distance <=> b.distance } %>
+
+<% @results[:posts].each do |post| %>
+  <% location = post.find_location %>
+  <% if location != nil %>
+    <%= link_to "#{post.title}", boardcategory_boardpost_path(post.boardcategory, post) %> <br>
+    <%= "Distance: " '%.2f' % location.distance_to([current_user.latitude, current_user.longitude]) %>
+    <%= " miles" %><br>
+  <% end %>
+<% end %>

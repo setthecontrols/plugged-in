@@ -1,4 +1,0 @@
-<h3>Posts: </h3>
-<% @results[:posts].each do |post| %>
-  <%= link_to "#{post.title}", boardcategory_boardpost_path(post.boardcategory, post) %> <br>
-<% end %>

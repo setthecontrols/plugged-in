@@ -1,0 +1,25 @@
+<% @results[:users].each do |user| %>
+  <% location = user.find_location %>
+  <% if location != nil %>
+    <% user.distance = location.distance_to([current_user.latitude, current_user.longitude]) %>
+  <% end %>
+<% end %>
+
+<% outliers = @results[:users].select { |user| user.distance == nil } %>
+
+<% results = @results[:users].reject { |user| user.distance == nil } %>
+
+<% results.sort! { |a, b| a.distance <=> b.distance } %>
+
+<h5>Users Sorted by Distance:</h5>
+<% results.each do |user| %>
+  <% location = user.find_location %>
+    <%=  link_to "#{user.full_name}", user_path(user)%> <br>
+    <%= "Distance: " '%.2f' % location.distance_to([current_user.latitude, current_user.longitude]) %>
+    <%= " miles" %><br>
+<% end %>
+
+<h5>Unsorted Users:</h5>
+<% outliers.each do |user| %>
+  <%=  link_to "#{user.full_name}", user_path(user)%> <br>
+<% end %>
