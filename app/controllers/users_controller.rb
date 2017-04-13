@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @connections = @user.connections
     @locations = Location.where(user_id: params[:id])
     @location = @locations.last
   end
