@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :boardcategories, only: [:index, :show]
 
   resources :boardposts
-
+  resources :calendars
   resources :tags, only: [:new, :create] do
     resources :post_tags, only: [:new, :create]
   end
