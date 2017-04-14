@@ -5,15 +5,31 @@
       <div class="card cyan darken-3 center-align">
         <span class="card-title title grey-text text-lighten-2"><strong>News Feed</span>
   <% @feed.each do |f| %>
-    <% if f.class == Boardpost %>
+    <% if f.class == Boardpost && f.user_id == @user.id%>
     <div class="row">
       <div class="col s12">
         <div class="card grey lighten-2">
           <div class="card-content cyan-text text-darken-3">
-                <span class="card-title"><strong><%= @users.find_by(id: f.user_id).username %></strong> created a new Post</span>
+                <span class="card-title">You've created a new Post</span>
                 <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
                 <div class="card grey lighten-4 center-align">
-                <br><p><%= "Category: #{@categories.find_by(id: f.boardcategory_id).name} Title: #{f.title}"  %><br>
+                <br><p><%= link_to "Category: #{@categories.find_by(id: f.boardcategory_id).name}", boardcategory_path(@categories.find_by(id: f.boardcategory_id)) %> <br> <%= link_to "Title: #{f.title}", boardpost_path(f)  %><br>
+                  <br></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% elsif f.class == Boardpost %>
+    <div class="row">
+      <div class="col s12">
+        <div class="card grey lighten-2">
+          <div class="card-content cyan-text text-darken-3">
+                <span class="card-title"><strong><%= link_to "#{@users.find_by(id: f.user_id).username}", user_path(@users.find_by(id: f.user_id)) %></strong> created a new Post</span>
+                <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
+                <div class="card grey lighten-4 center-align">
+                <br><p><%= link_to "Category: #{@categories.find_by(id: f.boardcategory_id).name}", boardcategory_path(@categories.find_by(id: f.boardcategory_id)) %> <br> <%= link_to "Title: #{f.title}", boardpost_path(f)  %><br>
                   <br></p>
               </div>
             </div>
@@ -26,7 +42,7 @@
           <div class="col s12">
             <div class="card grey lighten-2">
               <div class="card-content cyan-text text-darken-3">
-                    <span class="card-title">You're connected to <strong><%=@user.find(f.connected_user_id).username %></strong>now.</span>
+                    <span class="card-title">You've connected to <strong><%=link_to "#{@user.find(f.connected_user_id).username}", user_path(@user.find(f.connected_user_id)) %></strong>now.</span>
                     <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
                   </div>
                 </div>
@@ -38,7 +54,13 @@
           <div class="col s12">
             <div class="card grey lighten-2">
               <div class="card-content cyan-text text-darken-3">
-                    <span class="card-title"><strong><%=@users.find_by(id: f.user_id).username%></strong> connected with <strong><%=@users.find_by(id: f.user_id).username%></strong></span>
+                    <span class="card-title"><strong><%=link_to "#{@users.find_by(id: f.user_id).username}", user_path(@users.find_by(id: f.user_id))%></strong> connected with
+                    <% if @user == @users.find_by(id: f.connected_user_id)%>
+                    You</span>
+                    <% else %>
+                    <strong><%=link_to "#{@users.find_by(id: f.connected_user_id).username}", user_path(@users.find_by(id: f.connected_user_id))%></strong></span>
+
+                    <% end %>
                     <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
                     <br>
                   </div>
@@ -51,7 +73,7 @@
           <div class="col s12">
             <div class="card grey lighten-2">
               <div class="card-content cyan-text text-darken-3">
-                    <span class="card-title"><strong><%=@users.find_by(id: f.user_id).username%></strong> uploaded some music.</span>
+                    <span class="card-title"><strong><%=link_to "#{@users.find_by(id: f.user_id).username}", user_path(@users.find_by(id: f.user_id))%></strong> uploaded some music.</span>
                     <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
                     <br>
                   </div>

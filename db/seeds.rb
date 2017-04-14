@@ -10,7 +10,7 @@ experience = ["Just started playing", "I play with friends a bit", "Playing loca
 status = ["In a band", "Looking for a band", "Looking for casual jams", "Looking for paid gig"]
 genres = ["Blues", "Rap", "Country", "Jazz", "Rock n Roll", "Punk", "Metal"]
 playables = ["Guitar", "Bass", "Drums", "Piano", "Sax", "Keys", "Obo"]
-post_categories = ["Band looking for players", "Bands needed", "For sale", "Players looking for bands", "Players looking for jams", "Music services", "Paid gigs" ]
+post_categories = ["Band Looking for Players", "Bands Needed", "For Sale", "Players Looking for Bands", "Players Looking for Jams", "Music Services", "Paid Gigs" ]
 
 
 20.times do
