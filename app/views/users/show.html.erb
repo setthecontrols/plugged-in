@@ -27,6 +27,7 @@
               <i class="material-icons">info_outline</i>
               <strong>Info</strong></h4></span>
               <p>
+                <span><h6><strong>Name: </strong><%= @user.full_name %></h6></span>
                 <span><h6><strong>Location: </strong><%= @user.location %></h6></span>
                 <span><h6><strong>Band Status: </strong><%= @user.band_status %></h6></span>
                 <span><h6><strong>Genre: </strong><%= @user.genre %></h6></span>
@@ -57,38 +58,38 @@
                       <span class="card-title"><h4>
                         <i class="material-icons">settings_input_composite</i>
                         <strong>Connections</strong></h4></span>
-                        <% @connections.limit(6).each do |connection|%>
-                        <ul class="collection">
-                          <li class="collection-item avatar">
-                            <%= image_tag connection.connected_user.avatar.url(:large), :class => "circle"%>
-                            <p><strong><%= connection.connected_user.username %></strong><br>
-                            </p>
-                          </li>
-                        </ul>
-                        <% end %>
-                      </ul>
+                 <% @connections.limit(6).each do |connection|%>
+                  <ul class="collection">
+                    <li class="collection-item avatar">
+                      <%= image_tag connection.connected_user.avatar.url(:large), :class => "circle"%>
+                      <p><strong><%= link_to "#{connection.connected_user.username}", user_path(connection.connected_user) %></strong><br>
+                      </p>
+                    </li>
+                  </ul>
+                  <% end %>
                     </div>
                   </div>
                 </div>
+          <% if @current_user == @user %>
           <div class="col s12 l4">
             <div class="card-panel grey lighten-2 z-depth-5">
               <div class="card-content cyan-text text-darken-3">
                 <span class="card-title"><h4>
                   <i class="material-icons">messagee</i>
                   <strong>Messages</strong></h4></span>
-                  <% @connections.limit(6).each do |connection|%>
-                  <ul class="collection">
-                    <li class="collection-item avatar">
-                      <%= image_tag connection.connected_user.avatar.url(:large), :class => "circle"%>
-                      <p><strong><%= connection.connected_user.username %></strong><br>
-                      </p>
-                    </li>
-                  </ul>
-                  <% end %>
-                </ul>
+                       <% @conversations.each do |convo|%>
+                        <ul class="collection">
+                          <li class="collection-item avatar">
+                            <%= image_tag convo.other_user(@user).avatar.url(:large), :class => "circle"%>
+                            <p><strong><%= link_to "#{convo.other_user(@user).username}", conversation_path(convo) %></strong><br>
+                            </p>
+                          </li>
+                        </ul>
+                        <% end %>
               </div>
             </div>
           </div>
+          <% end %>
           <div class="col s12 l4">
             <div class="card-panel grey lighten-2 z-depth-5">
               <div class="card-content cyan-text text-darken-3">
@@ -96,7 +97,9 @@
                   <i class="material-icons">album</i>
                   <strong>Music</strong></h4></span>
                   <div class="container">
+                  <% if @current_user == @user %>
                     <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Upload Your Music!</a>
+                  <% end %>
                     <div id="modal1" class="modal">
                       <div class="modal-content">
                         <%=render "/useraudiofiles/new"%>
@@ -148,9 +151,9 @@
   <% end %>
 
   <% if current_user && current_user.id != @user.id%>
-  <% if !current_user.has_convo?(@user) %>
-  <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST"  %>
-  <% else %>
-  <%= link_to "Message", conversation_path(current_user.find_convo(@user)) %>
-  <% end %>
+    <% if !current_user.has_convo?(@user) %>
+      <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST"  %>
+    <% else %>
+      <%= link_to "Message", conversation_path(current_user.find_convo(@user)) %>
+    <% end %>
   <% end %>
