@@ -11,20 +11,18 @@ class UsersController < ApplicationController
     @posts = Boardpost.all
     @categories = Boardcategory.all
     @users = User.all
-
-    p '*'* 80
-    p "we're peeing out @users!!"
-    p @users
-
    end
 
   def show
     @user = User.find(params[:id])
     @connections = @user.connections
     @locations = Location.where(user_id: params[:id])
-    @user = User.find(current_user.id)
+    @current_user = User.find(current_user.id)
     @locations = Location.where(user_id: current_user.id)
     @location = @locations.last
+    @conversations = @user.conversations
+    @conversations = @conversations.sort_by{|convo| UserConversation.find_by(user_id: @user.id, conversation_id: convo.id).unread_messages }
+    @conversations = @conversations[0..5]
   end
 
   def edit

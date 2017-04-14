@@ -7,13 +7,13 @@
     posts = Boardpost.all
     results[:posts] = posts.select {|post| post.title.downcase.include?(keyword) }
     users = User.all
-    results[:users] << users.select {|user| user.full_name.downcase.include?(keyword) || user.username.include?(keyword)}
+    results[:users] << users.select {|user| user.full_name.downcase.include?(keyword) || user.username.downcase.include?(keyword)}
     results[:users].flatten!
-    results[:users] << users.select {|user| user.instruments.downcase.include?(keyword)}
+    results[:users] << users.select {|user| user.instruments.downcase.include?(keyword) if user.instruments}
     results[:users].flatten!
-    results[:users] << users.select {|user| user.location.downcase.include?(keyword)}
+    results[:users] << users.select {|user| user.location.downcase.include?(keyword) if user.location}
     results[:users].flatten!
-    results[:users] << users.select {|user| user.genre.downcase.include?(keyword)}
+    results[:users] << users.select {|user| user.genre.downcase.include?(keyword) if user.genre}
     results[:users].flatten!
     results[:users].uniq!
     return results
