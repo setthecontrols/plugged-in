@@ -1,6 +1,6 @@
 class BoardpostsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :find_post, only: [:show, :edit, :delete, :update]
+  before_action :find_post, only: [:show, :edit, :destroy, :update]
   before_action :find_cat_through_post, except: [:new, :create]
 
   def show
@@ -17,6 +17,8 @@ class BoardpostsController < ApplicationController
 
   def create
     @category = Boardcategory.find_by(name: params[:boardcategory][:name])
+    puts @category
+    puts params[:boardcategory][:name]
     @post = Boardpost.new(post_params)
     @post.user_id = current_user.id
     @post.boardcategory_id = @category.id
@@ -35,9 +37,10 @@ class BoardpostsController < ApplicationController
 
   def update
     @post.update_attributes(post_params)
+    redirect_to boardpost_path(@post)
   end
 
-  def delete
+  def destroy
     if current_user.id == @post.user_id
       @post.destroy
     end
