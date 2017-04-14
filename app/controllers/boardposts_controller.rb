@@ -9,6 +9,9 @@ class BoardpostsController < ApplicationController
 
   def new
     @post = Boardpost.new
+    if !user_signed_in
+      render :
+
   end
 
   def create

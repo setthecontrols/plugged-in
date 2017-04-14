@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
   def index
-    @locations = Location.near([current_user.latitude, current_user.longitude], 10)
+    if current_user
+      @locations = Location.near([current_user.latitude, current_user.longitude], 10)
+    end
     @users = User.all
   end
 

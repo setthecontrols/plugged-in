@@ -1,4 +1,4 @@
-<h1>User index page</h1>
+<h1>Find Musicians!</h1>
 
 <br>
 <div class="center-align">
@@ -30,15 +30,24 @@
 </div>
 </div>
 
+<% if @locations %>
   <% @locations.each do |location| %>
     <%= location.title %><br />
     <%= location.user_id %><br />
     <%= link_to  location.title, user_path(location.user_id) %><br>
-    <% end %>
+  <% end %>
+<% end %>
 
 <%@users.each do |u| %>
-  <%=link_to "#{u.username}", user_path(u.id) %>, zip code:  <%=u.location %><br>
-  <%="Playing styles #{u.genre}" %><br><br>
+  <% if u.username %>
+
+    <%=link_to "#{u.username}", user_path(u.id) %> from <%=u.location %><br>
+  <% elsif u.full_name%>
+    <%= link_to "#{u.full_name}", user_path(u.id)%> from <%=u.location%> %>
+  <% end %>
+  <% if u.genre %>
+    <%="Playing styles #{u.genre}" %><br><br>
+  <% end %>
 
 
 <% end %>
