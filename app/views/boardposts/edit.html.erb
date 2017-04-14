@@ -4,7 +4,9 @@
 
 
 <%= form_for @post, html: {multipart:true} do |f|%>
+  <%= f.label :title %>
   <%= f.text_area :title %>
+  <%= f.label :content %>
   <%= f.text_area :content %>
   <div id="tag-form">
   </div>
