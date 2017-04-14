@@ -1,3 +1,4 @@
+<div class="container">
 <% @results[:users].each do |user| %>
   <% location = user.find_location %>
   <% if location != nil %>
@@ -11,15 +12,17 @@
 
 <% results.sort! { |a, b| a.distance <=> b.distance } %>
 
-<h5>Musicians:</h5>
-<% results.each do |user| %>
-  <% location = user.find_location %>
-    <%=  link_to "#{user.username}", user_path(user)%> <br>
-    <%= "Distance: " '%.2f' % location.distance_to([current_user.latitude, current_user.longitude]) %>
-    <%= " miles" %><br>
-<% end %>
 
-
-<% outliers.each do |user| %>
-  <%=  link_to "#{user.username}", user_path(user)%> <br>
-<% end %>
+  <ul class="collection with-header">
+    <li class="collection-header"><h4>Musicians:</h4></li>
+      <% results.each do |user| %>
+        <% location = user.find_location %>
+          <%=  link_to "#{user.username}", user_path(user), :class => "collection-item" %></a>
+            <%= "Distance: " '%.2f' % location.distance_to([current_user.latitude, current_user.longitude]) %>
+              <%= " miles" %><br>
+                <% end %>
+                <% outliers.each do |user| %>
+                  <%=  link_to "#{user.username}", user_path(user), :class => "collection-item"%><br>
+                            <% end %>
+                          </ul>
+                        </div>
