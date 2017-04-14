@@ -58,6 +58,7 @@
                       <span class="card-title"><h4>
                         <i class="material-icons">settings_input_composite</i>
                         <strong>Connections</strong></h4></span>
+                        <%= link_to "ALL", user_connections_path(@user) %>
                  <% @connections.limit(6).each do |connection|%>
                   <ul class="collection">
                     <li class="collection-item avatar">
@@ -77,6 +78,7 @@
                 <span class="card-title"><h4>
                   <i class="material-icons">messagee</i>
                   <strong>Messages</strong></h4></span>
+                  <%= link_to "ALL", conversations_path %>
                        <% @conversations.each do |convo|%>
                         <ul class="collection">
                           <li class="collection-item avatar">
@@ -140,11 +142,6 @@
     </div>
     </div>
 
-  <% if current_user && @location != nil %>
-  <p> Location: <%= link_to(@user.location, location_path(@location)) %> </p>
-  <% else %>
-  <p> Location: Not yet set </p>
-  <% end %>
   <br><br><br>
   <% if current_user && current_user.id == @user.id %>
   <%= link_to("Update your location", new_location_path) %><br>
