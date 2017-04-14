@@ -1,31 +1,68 @@
 
-
-<% @feed.each do |f| %>
-  <div class="">
+<div class="feedwrapper">
+  <div class="row">
+    <div class="col s4">
+      <div class="card cyan darken-3 center-align">
+        <span class="card-title title grey-text text-lighten-2"><strong>News Feed</span>
+  <% @feed.each do |f| %>
     <% if f.class == Boardpost %>
-      <%= "Your friend  posted something" %>
-      <%= "Category: #{@categories.find_by(id: f.boardcategory_id).name} Title: #{f.title}"  %><br>
-      <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %><br><br>
+    <div class="row">
+      <div class="col s12">
+        <div class="card grey lighten-2">
+          <div class="card-content cyan-text text-darken-3">
+                <span class="card-title"><strong><%= @users.find_by(id: f.user_id).username %></strong> created a new Post</span>
+                <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
+                <div class="card grey lighten-4 center-align">
+                <br><p><%= "Category: #{@categories.find_by(id: f.boardcategory_id).name} Title: #{f.title}"  %><br>
+                  <br></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <% elsif f.class == Connection && f.user_id == @user.id%>
+        <div class="row">
+          <div class="col s12">
+            <div class="card grey lighten-2">
+              <div class="card-content cyan-text text-darken-3">
+                    <span class="card-title">You're connected to <strong><%=@user.find(f.connected_user_id).username %></strong>now.</span>
+                    <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <% elsif f.class == Connection %>
+        <div class="row">
+          <div class="col s12">
+            <div class="card grey lighten-2">
+              <div class="card-content cyan-text text-darken-3">
+                    <span class="card-title"><strong><%=@users.find_by(id: f.user_id).username%></strong> connected with <strong><%=@users.find_by(id: f.user_id).username%></strong></span>
+                    <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        <% elsif f.class == Useraudiofile %>
+        <div class="row">
+          <div class="col s12">
+            <div class="card grey lighten-2">
+              <div class="card-content cyan-text text-darken-3">
+                    <span class="card-title"><strong><%=@users.find_by(id: f.user_id).username%></strong> uploaded some music.</span>
+                    <span class="grey-text text-lighten-1"><h6> Posted at: <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %></h6></span>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      <% end %>
+
+      <% end %>
+      </div>
     </div>
-    <div class="">
-
-    <% elsif f.class == Connection && f.user_id == @user.id%>
-      <%= "You're connected to #{@user.find(f.connected_user_id).username} now." %><br>
-      <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %><br><br>
-    </div>
-    <div class="">
-
-    <% elsif f.class == Connection %>
-      <%= "#{@users.find_by(id: f.user_id).username} connected with #{@users.find_by(id: f.connected_user_id).username}." %><br>
-      <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %><br><br>
-    </div>
-
-    <div class="">
-      <% elsif f.class == Useraudiofile %>
-        <%= "#{@users.find_by(id: f.user_id).username} uploaded some music." %><br>
-        <%= f.created_at.strftime("%A, %d %b %Y %l:%M %p") %><br><br>
-    </div>
-
-    <% end %>
-
-<% end %>
+  </div>
+</div>
