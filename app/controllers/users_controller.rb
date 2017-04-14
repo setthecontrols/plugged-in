@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!
+
 
   def index
     if current_user
@@ -23,10 +23,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @connections = @user.connections
-    @locations = Location.where(user_id: params[:id])
-    @current_user = User.find(current_user.id)
-    @locations = Location.where(user_id: current_user.id)
-    @location = @locations.last
+    # @locations = Location.where(user_id: params[:id])
+    # @current_user = User.find(current_user.id)
+    # @locations = Location.where(user_id: current_user.id)
+    # @location = @locations.last
     @conversations = @user.conversations
     @conversations = @conversations.sort_by{|convo| UserConversation.find_by(user_id: @user.id, conversation_id: convo.id).unread_messages }
     @conversations = @conversations[0..5]
