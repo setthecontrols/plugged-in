@@ -63,7 +63,9 @@
   end
 
   def any_results_specific?(results)
-    return false if results.none?
+    results.each do |key, value|
+      return false if value.empty?
+    end
     true
   end
 

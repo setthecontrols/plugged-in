@@ -13,6 +13,8 @@ class SearchesController < ApplicationController
     @model = params[:model].downcase
     @results = search_specific(@keyword, @model)
     @found = any_results_specific?(@results)
+    puts @found
+    puts @results
     if @model == "users-all"
       @displayed_model = "Musicians"
     elsif @model == "posts"

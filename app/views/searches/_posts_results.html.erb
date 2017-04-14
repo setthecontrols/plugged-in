@@ -12,8 +12,10 @@
 <% @results[:posts].each do |post| %>
   <% location = post.find_location %>
   <% if location != nil %>
-    <%= link_to "#{post.title}", boardcategory_boardpost_path(post.boardcategory, post) %> <br>
+    <%= link_to "#{post.title}", boardpost_path(post) %> <br>
     <%= "Distance: " '%.2f' % location.distance_to([current_user.latitude, current_user.longitude]) %>
     <%= " miles" %><br>
+  <% else %>
+    <%= link_to "#{post.title}", boardpost_path(post) %> <br>
   <% end %>
 <% end %>
