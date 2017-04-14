@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     if current_user
       @locations = Location.near([current_user.latitude, current_user.longitude], 10)
@@ -8,6 +10,9 @@ class UsersController < ApplicationController
   end
 
   def feed
+    if !user_signed_in?
+      redirect_to redirect_to new_user_session_path
+    end
     @user = current_user
     @feed = @user.all_feeds
     @posts = Boardpost.all

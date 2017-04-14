@@ -30,7 +30,7 @@ class User < ApplicationRecord
     cf.each {|c| @feed << c}
     bp.each {|p| @feed << p}
     @feed.flatten!
-    @feed.sort! {|b, a| b.created_at <=> a.created_at}
+    @feed.sort! {|b, a| a.created_at <=> b.created_at}
     return @feed
   end
 
