@@ -1,15 +1,15 @@
 <br>
 <div class="pagewrapper">
-  <div class="row">
-    <div class="col s12 l9">
-      <div class="card-panel cyan darken-3 z-depth-5">
-        <div class="profile">
-          <div class="row">
-            <div class="col s12 l3">
-              <div class="card-panel grey lighten-2 z-depth-5">
-                <div class="center-align">
-                  <div class="row">
-                    <div class="col s12">
+<div class="row">
+  <div class="col s12 l9">
+    <div class="card-panel cyan darken-3 z-depth-5">
+      <div class="profile">
+        <div class="row">
+          <div class="col s12 l5">
+            <div class="card-panel grey lighten-2 z-depth-5">
+              <div class="center-align">
+                <div class="row">
+                  <div class="col s12">
                 <%= image_tag @user.avatar.url(:thumb), :class => "circle responsive-img" %>
                 <span class="cyan-text text-darken-3">
                   <h3><strong><%= @user.username %></strong></h3>
@@ -17,11 +17,11 @@
                   <br>
               </div>
             </div>
+                </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="biocontent">
     <div class="row">
       <div class="col s12 l3">
@@ -84,7 +84,7 @@
                   <i class="material-icons">album</i>
                   <strong>Music</strong></h4></span>
                   <div class="container">
-                  <% if @current_user == @user %>
+                  <% if current_user == @user %>
                     <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Upload Your Music!</a>
                   <% end %>
                     <div id="modal1" class="modal">
@@ -106,7 +106,7 @@
         </div>
       </div>
 
-        <% if @current_user == @user %>
+        <% if current_user == @user %>
         <div class="row">
          <div class="col s12 l4">
            <div class="card-panel grey lighten-2 z-depth-5">
@@ -138,18 +138,19 @@
   <div class="row">
     <div class="col s12 l6">
       <% if current_user && current_user.id == @user.id %>
-        <%= link_to("edit profile", edit_user_path(@user), :class => "waves-effect waves-light btn" ) %>
+      <%= link_to("edit profile", edit_user_path(@user), :class => "waves-effect waves-light btn" ) %>
     </div>
-    <div class="col s12 m6 l6">
+      <div class="col s12 m6 l6">
         <%= link_to("Change password", edit_user_registration_path, :class => "waves-effect waves-light btn") %>
-    </div>
-      <% elsif current_user && current_user.connected_users.include?(@user)%>
-        <div class="col s12 l6">
-        <%= button_to "Unplug from #{@user.username}", delete_connection_path(@user), method: :delete, :class => "btn waves-effect waves-light" %>
+      </div>
       <% else %>
-        <%= button_to "Connect with #{@user.username}", "/users/#{@user.id}/connections", method: "POST", :class => "btn waves-effect waves-light" %>
+      <%  if current_user.connected_users.include?(@user)%>
+        <div class="col s12 l6">
+      <%= button_to "Disconnect from #{@user.username}", delete_connection_path(@user), method: :delete, :class => "btn waves-effect waves-light" %>
+      <% else %>
+      <%= button_to "Connect with #{@user.username}", "/users/#{@user.id}/connections", method: "POST", :class => "btn waves-effect waves-light" %>
       <% end %>
-
+      <% end %>
     </div>
     </div>
 
