@@ -17,7 +17,7 @@
           <div class="background">
             <%=image_tag "studio1.jpg"%>
           </div>
-          <a href="#!user"><%= image_tag current_user.avatar.url(:medium), :class =>"circle" %></a>
+          <a href="/users/feed"><%= image_tag current_user.avatar.url(:medium), :class =>"circle" %></a>
           <span class="cyan-text text-darken-3 name"><strong><%= current_user.username %></strong></span>
           <span class="cyan-text text-darken-3 email"><strong><%= current_user.email %></strong></span>
         </div></li>
