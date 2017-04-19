@@ -22,7 +22,7 @@ class UseraudiofilesController < ApplicationController
     if @audio_file.save
       redirect_to user_path(@user)
     else
-      @errors = @post.errors.full_messages
+      @errors = @audio_file.errors.full_messages
       render :new
     end
   end

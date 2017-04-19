@@ -1,11 +1,12 @@
 <br>
-  <div class="profile">
-    <div class="row">
-      <div class="col s12 l3">
-        <div class="card-panel grey lighten-2 z-depth-5">
-          <div class="center-align">
-            <div class="row">
-              <div class="col s12">
+<div class="pagewrapper">
+      <div class="profile">
+        <div class="row">
+          <div class="col s12 l5 offset-s2">
+            <div class="card-panel grey lighten-2 z-depth-5">
+              <div class="center-align">
+                <div class="row">
+                  <div class="col s12">
                 <%= image_tag @user.avatar.url(:thumb), :class => "circle responsive-img" %>
                 <span class="cyan-text text-darken-3">
                   <h3><strong><%= @user.username %></strong></h3>
@@ -18,13 +19,16 @@
               </div>
             </div>
           </div>
-          <div class="biocontent">
-    <div class="row">
-      <div class="col s12 l3">
-        <div class="card-panel grey lighten-2 z-depth-5">
-          <div class="card-content cyan-text text-darken-3">
-            <span class="card-title"><h4>
-              <i class="material-icons">info_outline</i>
+  <div class="row">
+    <div class="col s12 l5 offset-s2">
+      <div class="card-panel cyan darken-3 z-depth-5">
+        <div class="biocontent">
+          <div class="row">
+            <div class="col s12 l5 offset-s1">
+              <div class="card small grey lighten-2 z-depth-5">
+                <div class="card-content cyan-text text-darken-3">
+                  <span class="card-title"><h4>
+                      <i class="material-icons">info_outline</i>
               <strong>Info</strong></h4></span>
               <p>
                 <span><h6><strong>Name: </strong><%= @user.full_name %></h6></span>
@@ -37,8 +41,8 @@
             </div>
           </div>
         </div>
-        <div class="col s12 l3">
-          <div class="card-panel grey lighten-2 z-depth-5">
+        <div class="col s12 l5 offset-s1">
+          <div class="card small grey lighten-2 z-depth-5">
             <div class="card-content cyan-text text-darken-3">
               <span class="card-title"><h4>
                 <i class="material-icons">perm_identity</i>
@@ -51,8 +55,9 @@
           </div>
         </div>
       </div>
+          <div class="addmedia">
               <div class="row">
-                <div class="col s12 l4">
+                <div class="col s12 l5 offset-s1">
                   <div class="card-panel grey lighten-2 z-depth-5">
                     <div class="card-content cyan-text text-darken-3">
                       <span class="card-title"><h4>
@@ -71,35 +76,15 @@
                     </div>
                   </div>
                 </div>
-          <% if @current_user == @user %>
-          <div class="col s12 l4">
-            <div class="card-panel grey lighten-2 z-depth-5">
-              <div class="card-content cyan-text text-darken-3">
-                <span class="card-title"><h4>
-                  <i class="material-icons">messagee</i>
-                  <strong>Messages</strong></h4></span>
-                  <%= link_to "ALL", conversations_path %>
-                       <% @conversations.each do |convo|%>
-                        <ul class="collection">
-                          <li class="collection-item avatar">
-                            <%= image_tag convo.other_user(@user).avatar.url(:large), :class => "circle"%>
-                            <p><strong><%= link_to "#{convo.other_user(@user).username}", conversation_path(convo) %></strong><br>
-                            </p>
-                          </li>
-                        </ul>
-                        <% end %>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <div class="col s12 l4">
+
+          <div class="col s12 l5 offset-s1">
             <div class="card-panel grey lighten-2 z-depth-5">
               <div class="card-content cyan-text text-darken-3">
                 <span class="card-title"><h4>
                   <i class="material-icons">album</i>
                   <strong>Music</strong></h4></span>
                   <div class="container">
-                  <% if @current_user == @user %>
+                  <% if current_user == @user %>
                     <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Upload Your Music!</a>
                   <% end %>
                     <div id="modal1" class="modal">
@@ -117,39 +102,84 @@
                 </div>
               </p>
             </div>
+          </div>
+        </div>
+        <center>
+        <div class="container">
+          <div class="row">
+            <div class="col s12 l6">
+              <% if current_user && current_user.id == @user.id %>
+              <%= link_to("edit profile", edit_user_path(@user), :class => "waves-effect waves-light btn" ) %>
+            </div>
+              <div class="col s12 m6 l6">
+                <%= link_to("Change password", edit_user_registration_path, :class => "waves-effect waves-light btn") %>
+              </div>
+              <% else %>
+              <%  if current_user.connected_users.include?(@user)%>
+                <div class="col s12 l6">
+              <%= button_to "Disconnect from #{@user.username}", delete_connection_path(@user), method: :delete, :class => "btn waves-effect waves-light" %>
+              <% else %>
+              <%= button_to "Connect with #{@user.username}", "/users/#{@user.id}/connections", method: "POST", :class => "btn waves-effect waves-light" %>
+              <% end %>
+              <% end %>
+                    </div>
+                  </div>
+                </div>
+              </center>
+        <div class="row">
+          <div class="col s12 l6">
+        <% if current_user && current_user.id != @user.id%>
+          <% if !current_user.has_convo?(@user) %>
+            <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST", :class => "waves-effect waves-light btn"  %>
+          <% else %>
+            <%= link_to "Message", conversation_path(current_user.find_convo(@user)), :class => "waves-effect waves-light btn" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+<% if current_user == @user %>
+<center>
+  <a class="waves-effect waves-light btn" href="#modal2">Messages</a>
+</center>
+
+  <!-- Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4>Messages</h4>
+      <div> <div class="row">
+       <div class="col s12 l12">
+         <div class="card-panel grey lighten-2 z-depth-5">
+           <div class="card-content cyan-text text-darken-3">
+             <span class="card-title"><h4>
+               <i class="material-icons">messagee</i>
+               <strong>Messages</strong></h4></span>
+               <%= link_to "ALL", conversations_path %>
+                    <% @conversations.each do |convo|%>
+                     <ul class="collection">
+                       <li class="collection-item avatar">
+                         <%= image_tag convo.other_user(@user).avatar.url(:large), :class => "circle"%>
+                         <p><strong><%= link_to "#{convo.other_user(@user).username}", conversation_path(convo) %></strong><br>
+                         </p>
+                       </li>
+                     </ul>
+                     <% end %>
+                   </div>
+                  </div>
+                 </div>
+               </div>
+               <% end %>
+             </div>
+             </div>
+           </div>
+<br>
+<br>
 
         </div>
-
-
-
-
-  <div class="row">
-    <div class="col s12 l6">
-      <% if current_user && current_user.id == @user.id %>
-        <%= link_to("edit profile", edit_user_path(@user), :class => "waves-effect waves-light btn" ) %>
     </div>
-    <div class="col s12 m6 l6">
-        <%= link_to("Change password", edit_user_registration_path, :class => "waves-effect waves-light btn") %>
-    </div>
-      <% elsif current_user && current_user.connected_users.include?(@user)%>
-        <div class="col s12 l6">
-        <%= button_to "Unplug from #{@user.username}", delete_connection_path(@user), method: :delete, :class => "btn waves-effect waves-light" %>
-      <% else %>
-        <%= button_to "Connect with #{@user.username}", "/users/#{@user.id}/connections", method: "POST", :class => "btn waves-effect waves-light" %>
-      <% end %>
-
-    </div>
-    </div>
+  </div>
+</div>
 
   <br><br><br>
   <% if current_user && current_user.id == @user.id %>
   <%= link_to("Update your location", new_location_path) %><br>
-  <% end %>
-
-  <% if current_user && current_user.id != @user.id%>
-    <% if !current_user.has_convo?(@user) %>
-      <%= button_to "Create Conversation", user_user_conversations_path(@user), method: "POST"  %>
-    <% else %>
-      <%= link_to "Message", conversation_path(current_user.find_convo(@user)) %>
-    <% end %>
   <% end %>

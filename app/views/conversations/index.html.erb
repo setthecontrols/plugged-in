@@ -1,9 +1,19 @@
-<h2>Conversations</h2>
 
-<% @conversations.each do |convo| %>
-  <%= link_to "#{convo.other_user(@user).username}", conversation_path(convo)%> <br>
-  <% @UC = UserConversation.find_by(conversation_id: convo.id, user_id: @user.id) %>
-  <% if @UC.unread_messages %>
-    <p><%= @UC.unread_messages.length %> unread messages</p> <br>
+<div class="container">
+  <div class="card-panel grey lighten-3">
+<h2 class="title">Conversations</h2>
+<ul class="collection">
+    <% @conversations.each do |convo| %>
+  <li class="collection-item avatar">
+    <%=image_tag "convo.other_user.avatar", :class => "circle"%>
+    <span class="title"><%= link_to "#{convo.other_user(@user).username}", conversation_path(convo)%></span>
+    <p><% @UC = UserConversation.find_by(conversation_id: convo.id, user_id: @user.id) %>
+    <% if @UC.unread_messages %>
+      <p><%= @UC.unread_messages.length %> unread messages</p> <br>
+    </p>
+    <a class="secondary-content"><i class="material-icons">message</i></a>
+    <% end %>
   <% end %>
-<% end %>
+  </li>
+</div>
+</div>
