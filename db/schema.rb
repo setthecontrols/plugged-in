@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412220033) do
+ActiveRecord::Schema.define(version: 20170503231336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,27 @@ ActiveRecord::Schema.define(version: 20170412220033) do
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "event_name",                           null: false
+    t.date     "event_date",                           null: false
+    t.time     "event_starttime",                      null: false
+    t.time     "event_end_time",                       null: false
+    t.string   "host_string",                          null: false
+    t.string   "event_street_address",                 null: false
+    t.string   "event_city",                           null: false
+    t.string   "event_state",                          null: false
+    t.integer  "event_zip",                            null: false
+    t.boolean  "public_event",         default: false
+    t.integer  "host_id",                              null: false
+    t.integer  "attendee_id"
+    t.integer  "invitee_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["attendee_id"], name: "index_events_on_attendee_id", using: :btree
+    t.index ["host_id"], name: "index_events_on_host_id", using: :btree
+    t.index ["invitee_id"], name: "index_events_on_invitee_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
